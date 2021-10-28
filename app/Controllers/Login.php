@@ -12,9 +12,14 @@ class Login extends BaseController
 	}
 
     function test()
+
 	{
 		return view('hola');
 	}
+
+    function partido(){
+        return view('partido');
+    }
 
     // show single user
     function fetch_single_data($id = null)

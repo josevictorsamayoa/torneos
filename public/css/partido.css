@@ -1,0 +1,50 @@
+body {
+	background-image: url(1.jpeg);
+	background-position: center-center;
+	background-attachment: fixed;
+	background-repeat: no repeat;
+}
+
+table{
+	background-color: #82E0AA;
+	font-size: 40px;
+	font-family: "Maiandra GD";
+	/*color: white;*/
+	border: ridge black 3px;
+	text-align: center;
+	color: #000000;
+}
+table td{
+	border: ridge black 3px;
+	padding: 10px;
+	font-size: 20px;
+	
+
+}
+table caption{
+	color: #138D75;
+	font-size: 40px;
+
+}
+table th{
+	border: ridge black 3px;
+	padding: 6px;
+	background-color: #229954;
+
+}
+
+#padre{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.pelota:hover{
+	transform: rotate(500deg);
+	transition: 5s;
+}
+.pelota{
+	transform: rotate(-500deg);
+	transition: 5s;
+	display: block;
+	margin: auto;
+}
