@@ -29,7 +29,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col">Nuevo Jugador</div>
+                    <div class="col">Listado de Jugadores</div>
                     <div class="col text-right">
                         <a href="<?php echo base_url("/torneos/agregar_jugadores")?>" class="btn btn-success btn-sm">Crear</a>
                     </div>
@@ -42,28 +42,31 @@
                             <th>ID</th>
                             <th>Nombres</th>
                             <th>Apellidos</th>
-                            <th>No. Camisola</th>
-                            <th>Tarjetas</th>
+                            <th>Fecha de Nac.</th> 
+                            <th>Equipo</th>
+                            <th>No. Camisola</th>                                                       
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
                         <?php
 
-                      /* if($user_data)
+                      if($jugador_data)
                         {
-                            foreach($user_data as $user)
+                            foreach($jugador_data as $jugador)
                             {
                                 echo '
                                 <tr>
-                                    <td>'.$user["id"].'</td>
-                                    <td>'.$user["name"].'</td>
-                                    <td>'.$user["email"].'</td>
-                                    <td>'.$user["gender"].'</td>
-                                    <td><a href="'.base_url().'/torneos/editar_jugadores'.$user["id"].'" class="btn btn-sm btn-warning">Edit</a></td>
-                                    <td><button type="button" onclick="delete_data('.$user["id"].')" class="btn btn-danger btn-sm">Delete</button></td>
+                                    <td>'.$jugador["id_jugador"].'</td>
+                                    <td>'.$jugador["nombre"].'</td>
+                                    <td>'.$jugador["apellido"].'</td>
+                                    <td>'.$jugador["fecha_nac"].'</td>
+                                    <td>'.$jugador["id_equipo"].'</td>
+                                    <td>'.$jugador["numero"].'</td>
+                                    <td><a href="'.base_url().'/torneos/editar_jugadores/'.$jugador["id_jugador"].'" class="btn btn-sm btn-warning">Editar</a></td>
+                                    <td><button type="button" onclick="eliminar_jugador('.$jugador["id_jugador"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
                                 </tr>';
                             }
-                        }*/
+                        }
 
                         ?>
                     </table>
@@ -71,12 +74,12 @@
                 <div>
                     <?php
 
-                    /*if($pagination_link)
+                    if($pagination_link)
                     {
-                        $pagination_link->setPath('crud');
+                        $pagination_link->setPath('torneos');
 
                         echo $pagination_link->links();
-                    }*/
+                    }
                     
                     ?>
 
@@ -117,11 +120,11 @@ body {
 </style>
 
 <script>
-function delete_data(id)
+function eliminar_jugador (id)
 {
-    if(confirm("Are you sure you want to remove it?"))
+    if(confirm("¿Esta seguro de eliminar el jugador?"))
     {
-        window.location.href="<?php echo base_url(); ?>/crud/delete/"+id;
+        window.location.href="<?php echo base_url(); ?>/torneos/eliminar_jugador/"+id;
     }
     return false;
 }

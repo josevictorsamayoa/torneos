@@ -30,7 +30,7 @@
             
             
             <div class="card-body">
-                <form method="post" action="<?php echo base_url("/crud/add_validation")?>">
+                <form method="post" action="<?php echo base_url("/torneos/add_validation_jugador")?>">
                     <div class="form-group">
                         <label>Nombres</label>
                         <input type="text" name="nombres" class="form-control" />
@@ -89,26 +89,41 @@
 
                     <div class="form-group">
                         <label>Equipo</label>
+                        <input type="number" name="equipo" class="form-control" />
+                        <?php
+                        if($validation->getError('equipo'))
+                        {
+                            echo "
+                            <div class='alert alert-danger mt-2'>
+                            ".$validation->getError('equipo')."
+                            </div>
+                            ";
+                        }
+                        ?>
+                    </div>
+
+                   <!-- <div class="form-group">
+                        <label>Equipo</label>
                         <select name="equipo" class="form-control">
                             <option value="">Seleccione un Equipo</option>
-                            <option value="Male">1</option>
-                            <option value="Female">2</option>
+                            <option value="">1</option>
+                            <option value="">2</option>
                         </select>
 
-                        <?php
+                        <?php/*
 
-                        if($validation->getError('gender'))
+                        if($validation->getError('equipo'))
                         {
                             echo '<div class="alert alert-danger mt-2">
-                            '.$validation->getError("gender").'
+                            '.$validation->getError("equipo").'
                             </div>';
-                        }
+                        }*/
 
                         ?>
-
+                    </div>-->
                     <div class="form-group">
                         <label>No. Camisola</label>
-                        <input type="text" name="camisola" class="form-control" />
+                        <input type="number" name="camisola" class="form-control" />
                         <?php
                         if($validation->getError('camisola'))
                         {

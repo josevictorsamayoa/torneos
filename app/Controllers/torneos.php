@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
+use App\Models\jugadoresModel;
+use App\Models\equiposModel;
 
 class torneos extends BaseController
 {
@@ -17,66 +19,149 @@ class torneos extends BaseController
 		return view('hola');
 	}
 
+	//Funcion para llenado de tabla con los datos de los jugadores
     function jugadores(){
-        return view('Jugadores_View');
+        $jugadoresModel = new jugadoresModel();
+
+        $data['jugador_data'] = $jugadoresModel->orderBy('id_jugador', 'DESC')->paginate(10);
+
+        $data['pagination_link'] = $jugadoresModel->pager;
+
+        return view('Jugadores_View', $data);
     }
 
+	//Funcion que muestra la vista de crear jugadores
 	function agregar_jugadores(){
-        return view('Crear_Jugador');
-    }
-
-	function editar_jugadores(){
-        return view('Editar_Jugador');
+		return view('Crear_Jugador');
     }
 
 
-    // show single user
-    function fetch_single_data($id = null)
-    {
-        $crudModel = new CrudModel();
-
-        $data['user_data'] = $crudModel->where('id', $id)->first();
-
-        return view('edit_data', $data);
-    }
-
-    function edit_validation()
-    {
-    	helper(['form', 'url']);
+	//Funcion para agregar nuevos jugadores
+	function add_validation_jugador(){
+		helper(['form', 'url']);
         
         $error = $this->validate([
-            'name' 	=> 'required|min_length[3]',
-            'email' => 'required|valid_email',
-            'gender'=> 'required'
+            'nombres' 	=> 'required|min_length[3]',
+			'apellidos' => 'required|min_length[3]',
+			'actanac' 	=> 'required|min_length[3]',
+            'fecnac' 	=> 'required|valid_date',
+            'equipo'	=> 'required',
+			'camisola'	=> 'required'
         ]);
 
-        $crudModel = new CrudModel();
-
-        $id = $this->request->getVar('id');
+        
 
         if(!$error)
         {
-        	$data['user_data'] = $crudModel->where('id', $id)->first();
-        	$data['error'] = $this->validator;
-        	echo view('edit_data', $data);
+        	echo view('Crear_Jugador', [
+                'error' => $this->validator
+            ]);
         } 
         else 
         {
-	        $data = [
-	            'name' => $this->request->getVar('name'),
-	            'email'  => $this->request->getVar('email'),
-	            'gender'  => $this->request->getVar('gender'),
-	        ];
+            $jugadoresModel = new jugadoresModel();
+            
+            $jugadoresModel->save([
+                'nombre'   => $this->request->getVar('nombres'),
+                'apellido'  => $this->request->getVar('apellidos'),
+				'acta_nacimiento'   => $this->request->getVar('actanac'),
+				'fecha_nac'   => $this->request->getVar('fecnac'),
+				'id_equipo'   => $this->request->getVar('equipo'),
+				'numero'   => $this->request->getVar('camisola'),
+            ]);          
+            
+            $session = \Config\Services::session();
 
-        	$crudModel->update($id, $data);
+            $session->setFlashdata('success', 'Usuario Agregado');
 
-        	$session = \Config\Services::session();
-
-            $session->setFlashdata('success', 'User Data Updated');
-
-        	return $this->response->redirect(site_url('/crud'));
+            return $this->response->redirect(site_url('/torneos/jugadores'));
         }
     }
+
+	//Funcion para editar jugadores
+	 function editar_jugadores ($id_jugador = null)
+	 {
+		 $jugadoresModel = new jugadoresModel();
+ 
+		 $data['jugador_data'] = $jugadoresModel->where('id_jugador', $id_jugador)->first();
+ 
+		 return view('Editar_Jugador', $data);
+	 }
+ 
+	 function edit_validation_jugador()
+	 {
+		 helper(['form', 'url']);
+		 
+		 $error = $this->validate([
+			'nombre' 	=> 'required|min_length[3]',
+			'apellidos' => 'required|min_length[3]',
+			'acta_nacimiento' 	=> 'required|min_length[3]',
+            'fecha_nac' 	=> 'required|valid_date',
+            'id_equipo'	=> 'required',
+			'numero'	=> 'required'
+		 ]);
+ 
+		 $jugadoresModel = new jugadoresModel();
+ 
+		 $id_jugador = $this->request->getVar('id_jugador');
+ 
+		 if(!$error)
+		 {
+			 $data['jugador_data'] = $jugadoresModel->where('id_jugador', $id_jugador)->first();
+			 $data['error'] = $this->validator;
+			 echo ('Error');
+			 echo view('Editar_Jugador', $data);
+		 } 
+		 else 
+		 {
+			 $data = [
+				'nombre'   => $this->request->getVar('nombre'),
+                'apellido'  => $this->request->getVar('apellido'),
+				'acta_nacimiento'   => $this->request->getVar('acta_nacimiento'),
+				'fecha_nac'   => $this->request->getVar('fecha_nac'),
+				'id_equipo'   => $this->request->getVar('id_equipo'),
+				'numero'   => $this->request->getVar('numero'),
+			 ];
+ 
+			 $jugadoresModel->update($id_jugador, $data);
+ 
+			 $session = \Config\Services::session();
+ 
+			 $session->setFlashdata('success', 'Jugador actualizado');
+ 
+			 return $this->response->redirect(site_url('/torneos/jugadores'));
+		 }		
+	 }
+
+	 //Funcion para eliminar jugadores
+	 function eliminar_jugador ($id)
+    {
+        $jugadoresModel = new jugadoresModel();
+
+        $jugadoresModel->where('id_jugador', $id)->delete($id);
+
+        $session = \Config\Services::session();
+
+        $session->setFlashdata('success', 'Jugador eliminado');
+
+        return $this->response->redirect(site_url('/torneos/jugadores'));
+    }
+
+
+	function equipos(){
+        $equiposModel = new equiposModel();
+
+        $data['equipo_data'] = $equiposModel->orderBy('id_equipo', 'DESC')->paginate(10);
+
+        $data['pagination_link'] = $equiposModel->pager;
+
+        //return view('equipos_View', $data);
+    }
+
+	
+
+
+   
 
     public function login() {
 
