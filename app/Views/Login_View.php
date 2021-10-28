@@ -29,7 +29,7 @@
                     <div class="titulo">
                         <img class="logo" src=  "img/logosiu.JPG">
                     </div>
-                    <form method="post" action="<?php echo base_url("/Login/login")?>">
+                    <form method="post" action="<?php echo base_url("/torneos/jugadores")?>">
                         <input type="text" name="correo" placeholder="Correo" required>
                         
                         <input type="password" name="password" placeholder="Contraseña"  required>

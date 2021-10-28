@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Models\UserModel;
 
-class Login extends BaseController
+class torneos extends BaseController
 {
 	function index()
 	{
@@ -17,9 +17,18 @@ class Login extends BaseController
 		return view('hola');
 	}
 
-    function partido(){
-        return view('partido');
+    function jugadores(){
+        return view('Jugadores_View');
     }
+
+	function agregar_jugadores(){
+        return view('Crear_Jugador');
+    }
+
+	function editar_jugadores(){
+        return view('Editar_Jugador');
+    }
+
 
     // show single user
     function fetch_single_data($id = null)
