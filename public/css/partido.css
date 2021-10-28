@@ -1,9 +1,12 @@
 body {
 	margin: 0;
 	background-attachment: fixed;
+<<<<<<< HEAD
+=======
 	background-position: center center;
 	background-image: url(../img/estadio.jpg);
 	background-repeat: no repeat;
+>>>>>>> 346e5bafba5b11adebe796bbcc6a47b20817e997
 }
 
 table{

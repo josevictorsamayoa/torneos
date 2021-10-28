@@ -1,6 +1,10 @@
 <html>
 <head>
+<<<<<<< HEAD
+	<title >Partidos</title>
+=======
 	<title>Partidos</title>
+>>>>>>> 346e5bafba5b11adebe796bbcc6a47b20817e997
      
 	<!-- Link hacia el archivo de estilos css -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
