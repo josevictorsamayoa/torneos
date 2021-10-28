@@ -32,7 +32,9 @@ class torneos extends BaseController
 
 	//Funcion que muestra la vista de crear jugadores
 	function agregar_jugadores(){
-		return view('Crear_Jugador');
+		$equiposModel = new equiposModel();
+        $data['equipos_data'] = $equiposModel->findAll();
+		return view('Crear_Jugador', $data);
     }
 
 

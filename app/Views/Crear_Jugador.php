@@ -89,17 +89,15 @@
 
                     <div class="form-group">
                         <label>Equipo</label>
-                        <input type="number" name="equipo" class="form-control" />
-                        <?php
-                        if($validation->getError('equipo'))
-                        {
-                            echo "
-                            <div class='alert alert-danger mt-2'>
-                            ".$validation->getError('equipo')."
-                            </div>
-                            ";
-                        }
-                        ?>
+                        <select name="id_equipo" class="form-control">
+                            <option value="">Seleccione un equipo</option>
+                            <?php
+                                foreach ($equipos_data as $equipo) {
+                                    echo '<option value="'.$equipo['id_equipo'].'">'.$equipo['nombre'].'</option>';
+                                }
+                            ?>
+                            
+                        </select>
                     </div>
 
                    <!-- <div class="form-group">

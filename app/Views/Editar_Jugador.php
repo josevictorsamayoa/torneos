@@ -101,18 +101,6 @@
                             ?>
                             
                         </select>
-                        <!-- <input type="number" name="id_equipo" class="form-control" value="<?php //echo $jugador_data['id_equipo'];?>"> -->
-
-                        <?php 
-                        if($validation->getError('id_equipo'))
-                        {
-                            echo "
-                            <div class='alert alert-danger mt-2'>
-                            ".$validation->getError('id_equipo')."
-                            </div>
-                            ";
-                        }
-                        ?>
                     </div>
 
                     <!--<div class="form-group">
