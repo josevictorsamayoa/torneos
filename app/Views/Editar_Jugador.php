@@ -18,7 +18,6 @@
 
         ?>
         <h2 class="text-center mt-4 mb-4">Editar Jugador</h2>
-        
         <div class="card">
             <div class="card-header">Editar datos</div>
             <div class="card-body">
@@ -90,7 +89,19 @@
 
                     <div class="form-group">
                         <label>Equipo</label>
-                        <input type="number" name="id_equipo" class="form-control" value="<?php echo $jugador_data['id_equipo'];?>">
+                        <select name="id_equipo" class="form-control">
+                            <?php
+                                foreach ($equipos_data as $equipo) {
+                                    if ($jugador_data['id_equipo'] == $equipo['id_equipo']) {
+                                        echo '<option value="'.$equipo['id_equipo'].'" selected>'.$equipo['nombre'].'</option>';
+                                    } else {
+                                        echo '<option value="'.$equipo['id_equipo'].'">'.$equipo['nombre'].'</option>';
+                                    }
+                                }
+                            ?>
+                            
+                        </select>
+                        <!-- <input type="number" name="id_equipo" class="form-control" value="<?php //echo $jugador_data['id_equipo'];?>"> -->
 
                         <?php 
                         if($validation->getError('id_equipo'))
@@ -155,12 +166,12 @@
 </html>
 
 <style>
-body {
+/* body {
 	margin: 0;
 	background-attachment: fixed;
 	background-position: center center;
-	background-image: url(../img/estadio.jpg);
+	background-image: url(../../img/estadio.jpg);
 	background-repeat: no repeat;
-}
+} */
 
 </style>

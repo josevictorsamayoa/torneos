@@ -5,6 +5,7 @@
     <meta name="viewport"
      content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/login.css">
     <title>Juagadores</title>
     <!--  -->
 </head>
@@ -42,9 +43,8 @@
                             <th>ID</th>
                             <th>Nombres</th>
                             <th>Apellidos</th>
-                            <th>Fecha de Nac.</th> 
-                            <th>Equipo</th>
-                            <th>No. Camisola</th>                                                       
+                            <th>Fecha de Nac.</th>
+                            <th>No. Camisola</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
@@ -60,7 +60,6 @@
                                     <td>'.$jugador["nombre"].'</td>
                                     <td>'.$jugador["apellido"].'</td>
                                     <td>'.$jugador["fecha_nac"].'</td>
-                                    <td>'.$jugador["id_equipo"].'</td>
                                     <td>'.$jugador["numero"].'</td>
                                     <td><a href="'.base_url().'/torneos/editar_jugadores/'.$jugador["id_jugador"].'" class="btn btn-sm btn-warning">Editar</a></td>
                                     <td><button type="button" onclick="eliminar_jugador('.$jugador["id_jugador"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
@@ -92,13 +91,6 @@
 </body>
 </html>
 <style>
-body {
-	margin: 0;
-	background-attachment: fixed;
-	background-position: center center;
-	background-image: url(../img/estadio.jpg);
-	background-repeat: no repeat;
-}
 .pagination li a
 {
     position: relative;

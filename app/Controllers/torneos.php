@@ -49,8 +49,6 @@ class torneos extends BaseController
 			'camisola'	=> 'required'
         ]);
 
-        
-
         if(!$error)
         {
         	echo view('Crear_Jugador', [
@@ -74,7 +72,7 @@ class torneos extends BaseController
 
             $session->setFlashdata('success', 'Usuario Agregado');
 
-            return $this->response->redirect(site_url('/torneos/jugadores'));
+            return $this->response->redirect(site_url('torneos/jugadores'));
         }
     }
 
@@ -82,9 +80,11 @@ class torneos extends BaseController
 	 function editar_jugadores ($id_jugador = null)
 	 {
 		 $jugadoresModel = new jugadoresModel();
- 
 		 $data['jugador_data'] = $jugadoresModel->where('id_jugador', $id_jugador)->first();
- 
+		
+		 $equiposModel = new equiposModel();
+         $data['equipos_data'] = $equiposModel->findAll();
+
 		 return view('Editar_Jugador', $data);
 	 }
  
@@ -104,8 +104,8 @@ class torneos extends BaseController
 		 $jugadoresModel = new jugadoresModel();
  
 		 $id_jugador = $this->request->getVar('id_jugador');
- 
-		 if(!$error)
+		
+		 if($error)
 		 {
 			 $data['jugador_data'] = $jugadoresModel->where('id_jugador', $id_jugador)->first();
 			 $data['error'] = $this->validator;
@@ -130,7 +130,7 @@ class torneos extends BaseController
 			 $session->setFlashdata('success', 'Jugador actualizado');
  
 			 return $this->response->redirect(site_url('/torneos/jugadores'));
-		 }		
+		 }
 	 }
 
 	 //Funcion para eliminar jugadores
@@ -146,22 +146,6 @@ class torneos extends BaseController
 
         return $this->response->redirect(site_url('/torneos/jugadores'));
     }
-
-
-	function equipos(){
-        $equiposModel = new equiposModel();
-
-        $data['equipo_data'] = $equiposModel->orderBy('id_equipo', 'DESC')->paginate(10);
-
-        $data['pagination_link'] = $equiposModel->pager;
-
-        //return view('equipos_View', $data);
-    }
-
-	
-
-
-   
 
     public function login() {
 
