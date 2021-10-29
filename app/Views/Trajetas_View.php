@@ -63,14 +63,13 @@
                                 <tr>
                                     <td>'.$tarjeta["id_tarjeta"].'</td>
                                     <td>'.$tarjeta["id_jugador"].'</td>
-                                    <td>'.$tarjeta["id_usuario"].'</td>
                                     <td>'.$tarjeta["id_partido"].'</td>
                                     <td>'.$tarjeta["color_tarjeta"].'</td>
                                     <td>'.$tarjeta["fecha"].'</td>
                                     <td>'.$tarjeta["motivo"].'</td>
                                     <td>'.$tarjeta["estado"].'</td>
                                     <td>'.$tarjeta["cumplio_sansion"].'</td>
-                                    <td><a href="'.base_url().'/equipos/editar_tarjetas/'.$tarjeta["id_tarjeta"].'" class="btn btn-sm btn-warning">Editar</a></td>
+                                    <td><a href="'.base_url().'/tarjetas/editar_tarjetas/'.$tarjeta["id_tarjeta"].'" class="btn btn-sm btn-warning">Editar</a></td>
                                     <td><button type="button" onclick="eliminar_tarjeta('.$tarjeta["id_tarjeta"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
                                     <td><a href="'.base_url().'/pagos/pago/'.$tarjeta["id_tarjeta"].'" class="btn btn-sm btn-info">Pagar</a></td>
                                 </tr>';
@@ -102,11 +101,11 @@
 </html>
 
 <script>
-function eliminar_equipo (id)
+function eliminar_tarjeta (id)
 {
     if(confirm("¿Esta seguro de eliminar la tarjeta?"))
     {
-        window.location.href="<?php echo base_url(); ?>/equipos/eliminar_tarjeta/"+id;
+        window.location.href="<?php echo base_url(); ?>/tarjetas/eliminar_tarjeta/"+id;
     }
     return false;
 }

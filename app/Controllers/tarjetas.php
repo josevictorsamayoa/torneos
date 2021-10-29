@@ -2,14 +2,15 @@
 
 namespace App\Controllers;
 
-use App\Models\equiposModel;
-use App\Models\UserModel;
+use App\Models\partidosModel;
+use App\Models\jugadoresModel;
+use App\Models\tarjetasModel;
 
 class tarjetas extends BaseController
 {
 	function index()
 	{
-		return view('Tarjetas_View');
+		return view('Trajetas_View');
 	}
 
     
@@ -17,127 +18,140 @@ class tarjetas extends BaseController
     function tarjeta(){
         $tarjetasModel = new tarjetasModel();
         
-        $data['tarjeta_data'] = $tarjetasModel->orderBy('id_equipo', 'DESC')->paginate(10);
+        $data['tarjeta_data'] = $tarjetasModel->orderBy('id_tarjeta', 'DESC')->paginate(10);
 
-        //print_r($data['equipo_data']) ;
+       // print_r($data['tarjeta_data']) ;
 
         $data['pagination_link'] = $tarjetasModel->pager;
 
-        return view('Tarjetas_View', $data);
+        return view('Trajetas_View', $data);
     }
 
 	//Funcion que muestra la vista de crear jugadores
-	function agregar_equipos(){
-		$UserModel = new UserModel();
-        $data['usuario_data'] = $UserModel->findAll();
-		return view('Crear_Equipo', $data);
+	function agregar_tarjetas(){
+		$jugadoresModel = new jugadoresModel();
+        $data['jugador_data'] = $jugadoresModel->findAll();
+        $partidosModel = new partidosModel();
+        $data['partido_data'] = $partidosModel->findAll();
+		return view('Crear_Tarjeta', $data);
     }
 
 
 	//Funcion para agregar nuevos equipos
-	function add_validation_equipo(){
+	function add_validation_tarjeta(){
 		helper(['form', 'url']);
         
         $error = $this->validate([
-            'nombre' 	=> 'required|min_length[3]',
-			'id_usuario' => 'required',
-			'puntos' 	=> 'required',
-            'goles_favor' 	=> 'required',
-            'goles_contra'	=> 'required'
+            'id_jugador' 	    => 'required',
+			'id_partido'        => 'required',
+			'color_tarjeta' 	=> 'required',
+            'fecha' 	        => 'required',
+            'motivo'	        => 'required',
+            'estado' 	        => 'required',
+            'cumplio_sansion'	=> 'required'
         ]);
 
         if(!$error)
         {
-        	echo view('Crear_Equipo', [
+        	echo view('Crear_Tarjeta', [
                 'error' => $this->validator
             ]);
         } 
         else 
         {
-            $equiposModel = new equiposModel();
+            $tarjetasModel = new tarjetasModel();
             
-            $equiposModel->save([
-                'nombre'   => $this->request->getVar('nombre'),
-                'id_usuario'  => $this->request->getVar('id_usuario'),
-				'puntos'   => $this->request->getVar('puntos'),
-				'goles_favor'   => $this->request->getVar('goles_favor'),
-				'goles_contra'   => $this->request->getVar('goles_contra'),
+            $tarjetasModel->save([
+                'id_jugador'        => $this->request->getVar('id_jugador'),
+                'id_partido'        => $this->request->getVar('id_partido'),
+				'color_tarjeta'     => $this->request->getVar('color_tarjeta'),
+				'fecha'             => $this->request->getVar('fecha'),
+				'motivo'            => $this->request->getVar('motivo'),
+                'estado'            => $this->request->getVar('estado'),
+                'cumplio_sansion'   => $this->request->getVar('cumplio_sansion'),
             ]);          
             
             $session = \Config\Services::session();
 
-            $session->setFlashdata('success', 'Equipo Agregado');
+            $session->setFlashdata('success', 'Tarjeta Agregada');
 
-            return $this->response->redirect(site_url('equipos/equipo'));
+            return $this->response->redirect(site_url('tarjetas/tarjeta'));
         }
     }
 
-	//Funcion para editar equipos
-	 function editar_equipos ($id_equipo = null)
+	//Funcion para editar tarjetas
+	 function editar_tarjetas ($id_tarjeta = null)
 	 {
-		 $equiposModel = new equiposModel();
-		 $data['equipo_data'] = $equiposModel->where('id_equipo', $id_equipo)->first();
+         $tarjetasModel = new tarjetasModel();
+		 $data['tarjeta_data'] = $tarjetasModel->where('id_tarjeta', $id_tarjeta)->first();
 		
-		 $UserModel = new UserModel();
-         $data['usuario_data'] = $UserModel->findAll();
+         $jugadoresModel = new jugadoresModel();
+         $data['jugador_data'] = $jugadoresModel->findAll();
+         $partidosModel = new partidosModel();
+         $data['partido_data'] = $partidosModel->findAll();
 
-		 return view('Editar_Equipo', $data);
+		 return view('Editar_Tarjeta', $data);
+         //return view('hola');
 	 }
  
-	 function edit_validation_equipo()
+	 function edit_validation_tarjeta()
 	 {
 		 helper(['form', 'url']);
 		 
 		 $error = $this->validate([
-			'nombre' 	=> 'required|min_length[3]',
-			'id_usuario' => 'required',
-			'puntos' 	=> 'required',
-            'goles_favor' 	=> 'required',
-            'goles_contra'	=> 'required'
+			'id_jugador' 	    => 'required',
+			'id_partido'        => 'required',
+			'color_tarjeta' 	=> 'required',
+            'fecha' 	        => 'required',
+            'motivo'	        => 'required',
+            'estado' 	        => 'required',
+            'cumplio_sansion'	=> 'required'
 		 ]);
  
-		 $equiposModel = new equiposModel();
+		 $tarjetasModel = new tarjetasModel();
  
-		 $id_equipo = $this->request->getVar('id_equipo');
+		 $id_tarjeta = $this->request->getVar('id_tarjeta');
 		
 		 if($error)
 		 {
-			 $data['equipo_data'] = $equiposModel->where('id_equipo', $id_equipo)->first();
+			 $data['tarjeta_data'] = $tarjetasModel->where('id_tarjeta', $id_tarjeta)->first();
 			 $data['error'] = $this->validator;
 			 echo view('Editar_Equipo', $data);
 		 } 
 		 else 
 		 {
 			 $data = [
-				'nombre'   => $this->request->getVar('nombre'),
-                'id_usuario'  => $this->request->getVar('id_usuario'),
-				'puntos'   => $this->request->getVar('puntos'),
-				'goles_favor'   => $this->request->getVar('goles_favor'),
-				'goles_contra'   => $this->request->getVar('goles_contra'),
+				'id_jugador'        => $this->request->getVar('id_jugador'),
+                'id_partido'        => $this->request->getVar('id_partido'),
+				'color_tarjeta'     => $this->request->getVar('color_tarjeta'),
+				'fecha'             => $this->request->getVar('fecha'),
+				'motivo'            => $this->request->getVar('motivo'),
+                'estado'            => $this->request->getVar('estado'),
+                'cumplio_sansion'   => $this->request->getVar('cumplio_sansion'),
 			 ];
  
-			 $equiposModel->update($id_equipo, $data);
+			 $tarjetasModel->update($id_tarjeta, $data);
  
 			 $session = \Config\Services::session();
  
-			 $session->setFlashdata('success', 'Equipo actualizado');
+			 $session->setFlashdata('success', 'Tarjeta actualizada');
  
-			 return $this->response->redirect(site_url('/equipos/equipo'));
+			 return $this->response->redirect(site_url('/tarjetas/tarjeta'));
 		 }
 	 }
 
 	 //Funcion para eliminar jugadores
-	 function eliminar_equipo ($id)
+	 function eliminar_tarjeta ($id)
     {
-        $equiposModel = new equiposModel();
+        $tarjetasModel = new tarjetasModel();
 
-        $equiposModel->where('id_equipo', $id)->delete($id);
+        $tarjetasModel->where('id_tarjeta', $id)->delete($id);
 
         $session = \Config\Services::session();
 
-        $session->setFlashdata('success', 'Equipo eliminado');
+        $session->setFlashdata('success', 'Tarjeta eliminado');
 
-        return $this->response->redirect(site_url('/equipos/equipo'));
+        return $this->response->redirect(site_url('/tarjetas/tarjeta'));
     }
 
     
