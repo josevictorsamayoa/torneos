@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="../css/main.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chamusqueros Home Page</title>
-    <style>
-    </style>
-</head>
-<body>
-   
-    <div class="wrapper">
+<div class="wrapper">
      <!--Top Menu & Menu button-->
  
         <div class="sidebar">
@@ -31,7 +18,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="torneos.php">
+                    <a href="./torneo.php">
                         <span class="icon"><i class="fas fa-desktop"></i></span>
                         <span class="item">Mis Torneos</span>
                     </a>
@@ -64,8 +51,3 @@
        </div>
         
     </div>
-  <script>
-     
-  </script>
-</body>
-</html>

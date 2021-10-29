@@ -13,6 +13,11 @@ class torneos extends BaseController
 		return view('Login_View');
 	}
 
+	function main(){
+
+		return view('main.php');
+	}
+
 	//Funcion para llenado de tabla con los datos de los jugadores
     function jugadores(){
         $jugadoresModel = new jugadoresModel();
