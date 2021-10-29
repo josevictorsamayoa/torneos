@@ -12,9 +12,10 @@ class equipos extends BaseController
 		return view('Equipos_View');
 	}
 
-    function test()
-	{
-		return view('Editar_Jugador');
+
+	function main(){
+
+		return view('main.php');
 	}
 
    	//Funcion para llenado de tabla con los datos de los equipos

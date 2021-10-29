@@ -12,8 +12,10 @@
         <link href="https://fonts.googleapis.com/css?family=Overpass&amp;display=swap" rel="stylesheet">
         
         <!-- Link hacia el archivo de estilos css -->
-        <link rel="stylesheet" href="login.css">
-        <link rel="stylesheet" href="main.css">        
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/login.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="main.php">
         <style type="text/css">
             
         </style>
@@ -25,64 +27,15 @@
     </head>
     
     <body>
+    <!-- Sidebar-->
+    <?php 
+        include_once '../app/Views/bodies/sidebar.php';
+    ?>
 
-    <div class="wrapper">
-     <!--Top Menu & Menu button-->
- 
-        <div class="sidebar">
-            <div class="profile">
-                <!--Profile Image-->
-                <img src="logosiu.jpg">
-                <!--Profile Title & Descruption-->
-                <h3>Los Tukis</h3>
-                <p>Admin</p>
-            </div>
-             <!--Menu item-->
-             <ul>
-                <li>
-                    <a href="#" class="active">
-                        <span class="icon"><i class="fas fa-home"></i></span>
-                        <span class="item">Mis Equipos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="torneos.php">
-                        <span class="icon"><i class="fas fa-desktop"></i></span>
-                        <span class="item">Mis Torneos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fas fa-user-friends"></i></span>
-                        <span class="item">Fechas</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-                        <span class="item">Tabla</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="pagos.php">
-                        <span class="icon"><i class="fas fa-database"></i></span>
-                        <span class="item">Pagos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="login.php">
-                        <span class="icon"><i class="fas fa-cog"></i></span>
-                        <span class="item">Log out</span>
-                    </a>
-                </li>
-            </ul>
-       </div>
-        
-    </div>
- <div>  
+<div class="container">  
     <a href="#">    
         <div class="card">
-            <img class="torneo" src="champions.png" alt="Avatar" style="width:100%">
+            <img class="torneo" src="../img/champions.jpg" alt="Avatar" style="width:100%">
         <div class="container">
             <h4><b>Champios League GT</b></h4>
             <p>Datos del torneo</p>
@@ -105,7 +58,7 @@
     </a>
     <a href="#">    
         <div class="card1">
-            <img class="torneo" src="europa.png" alt="Avatar" style="width:100%">
+            <img class="torneo" src="../img/europa.png" alt="Avatar" style="width:100%">
         <div class="container">
         <h4><b>Europa League GT</b></h4>
             <p>Datos del torneo</p>
@@ -128,7 +81,7 @@
     </a>
     <a href="#">    
         <div class="card2">
-            <img class="torneo" src="añadir.png" alt="Avatar" style="width:100%">
+            <img class="torneo" src="../img/añadir.png" alt="Avatar" style="width:100%">
         <div class="container">
             <h4><b>Agregar un torneo</b></h4>
             <p>Buscar torneos</p>

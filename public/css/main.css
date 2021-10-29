@@ -10,7 +10,7 @@
 body{
     background-attachment: fixed;
 	background-position: center center;
-	background-image: url(estadio.jpg);
+	background-image: url(../img/estadio.jpg);
 	background-repeat: no repeat;
 }
 .wrapper .sidebar{

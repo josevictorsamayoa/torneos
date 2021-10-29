@@ -12,8 +12,8 @@
         <link href="https://fonts.googleapis.com/css?family=Overpass&amp;display=swap" rel="stylesheet">
         
         <!-- Link hacia el archivo de estilos css -->
-        <link rel="stylesheet" href="login.css">
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="../css/login.css">
+        <link rel="stylesheet" href="../css/main.css">
         
         <style type="text/css">
             
@@ -27,59 +27,10 @@
     
     <body>
        
-    <div class="wrapper">
-     <!--Top Menu & Menu button-->
- 
-        <div class="sidebar">
-            <div class="profile">
-                <!--Profile Image-->
-                <img src="logosiu.jpg">
-                <!--Profile Title & Descruption-->
-                <h3>Los Tukis</h3>
-                <p>Admin</p>
-            </div>
-             <!--Menu item-->
-             <ul>
-                <li>
-                    <a href="#" class="active">
-                        <span class="icon"><i class="fas fa-home"></i></span>
-                        <span class="item">Mis Equipos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="torneos.php">
-                        <span class="icon"><i class="fas fa-desktop"></i></span>
-                        <span class="item">Mis Torneos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fas fa-user-friends"></i></span>
-                        <span class="item">Fechas</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
-                        <span class="item">Tabla</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="pagos.php">
-                        <span class="icon"><i class="fas fa-database"></i></span>
-                        <span class="item">Pagos</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="login.php">
-                        <span class="icon"><i class="fas fa-cog"></i></span>
-                        <span class="item">Log out</span>
-                    </a>
-                </li>
-            </ul>
-       </div>
-        
-    </div>
+   <!-- Sidebar-->
+    <?php 
+        include_once '../app/Views/bodies/sidebar.php';
+    ?>
         
     </div>
 
@@ -88,7 +39,7 @@
             <div id="central">
                 <div id="login">
                     <div class="titulo">
-                        <img class="logo" src= "paypal.png">
+                        <img class="logo" src= "../img/paypal.png">
                     </div>
                     <form id="loginform">
                         <input type="text" name="usuario" placeholder="Usuario" required>

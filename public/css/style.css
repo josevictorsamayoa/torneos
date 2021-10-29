@@ -1,0 +1,76 @@
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    background-color: #F1FFFA;
+    box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
+    transition: 0.3s;
+    border-radius: 5px;
+    width: 300px;
+    height: 500px;
+    position: absolute;
+    top: 150;
+    left: 300px;
+    cursor: pointer;
+  }
+  .card1 {
+    /* Add shadows to create the "card" effect */
+    background-color: #F1FFFA;
+    box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
+    transition: 0.3s;
+    border-radius: 5px;
+    width: 300px;
+    height: 500px;
+    position: absolute;
+    top: 0;
+    left: 350px;
+    cursor: pointer;
+  }
+  .card2 {
+     /* Add shadows to create the "card" effect */
+     background-color: #F1FFFA;
+     box-shadow: 0 4px 8px 0 rgb(255, 255, 255);
+     transition: 0.3s;
+     border-radius: 5px;
+     width: 300px;
+     height: 500px;
+     position: absolute;
+     top: 0;
+     left: 400px;
+     cursor: pointer;
+  }
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgb(252, 252, 252);
+    transition: 0.3s;
+  }
+    
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+  }
+  .card2 {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgb(252, 252, 252);
+    transition: 0.3s;
+  }
+    
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+   text-align: center;
+  }
+
+  .torneo{
+    width: 200px;
+    height: 200px;   
+    text-align: center;
+  }
+
+  .press{
+      color: grey;
+      text-align: center;
+  }
