@@ -18,7 +18,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./torneo.php">
+                    <a href="<?php echo base_url("/torneos/torneos")?>">
                         <span class="icon"><i class="fas fa-desktop"></i></span>
                         <span class="item">Mis Torneos</span>
                     </a>
