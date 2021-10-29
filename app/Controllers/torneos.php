@@ -23,6 +23,10 @@ class torneos extends BaseController
 
 		return view('torneos.php');
 	}
+
+	function pagos(){
+		return view('pagos.php');
+	}
 	//Funcion para llenado de tabla con los datos de los jugadores
     function jugadores(){
         $jugadoresModel = new jugadoresModel();

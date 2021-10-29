@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="">
                         <span class="icon"><i class="fas fa-user-friends"></i></span>
                         <span class="item">Fechas</span>
                     </a>
@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="pagos.php">
+                    <a href="<?php echo base_url("/torneos/pagos"); ?>">
                         <span class="icon"><i class="fas fa-database"></i></span>
                         <span class="item">Pagos</span>
                     </a>
