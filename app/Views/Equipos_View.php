@@ -71,15 +71,15 @@
                             {
                                 echo '
                                 <tr>
-                                    <td>'.$equipo["id_equipo"].'</td>
-                                    <td>'.$equipo["nombre"].'</td>
-                                    <td>'.$equipo["id_usuario"].'</td>
-                                    <td>'.$equipo["puntos"].'</td>
-                                    <td>'.$equipo["goles_favor"].'</td>
-                                    <td>'.$equipo["goles_contra"].'</td>
-                                    <td><a href="'.base_url().'/equipos/editar_equipos/'.$equipo["id_equipo"].'" class="btn btn-sm btn-warning">Editar</a></td>
-                                    <td><button type="button" onclick="eliminar_equipo('.$equipo["id_equipo"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                    <td><a href="'.base_url().'/torneos/jugadores/'.$equipo["id_equipo"].'" class="btn btn-sm btn-info">Ver</a></td>
+                                    <td>'.$equipo->id_equipo.'</td>
+                                    <td>'.$equipo->nombre.'</td>
+                                    <td>'.$equipo->entrenador.'</td>
+                                    <td>'.$equipo->puntos.'</td>
+                                    <td>'.$equipo->goles_favor.'</td>
+                                    <td>'.$equipo->goles_contra.'</td>
+                                    <td><a href="'.base_url().'/equipos/editar_equipos/'.$equipo->id_equipo.'" class="btn btn-sm btn-warning">Editar</a></td>
+                                    <td><button type="button" onclick="eliminar_equipo('.$equipo->id_equipo.')" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    <td><a href="'.base_url().'/torneos/jugadores/'.$equipo->id_equipo.'" class="btn btn-sm btn-info">Ver</a></td>
                                 </tr>';
                             }
                         }

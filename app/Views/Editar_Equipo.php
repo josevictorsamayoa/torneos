@@ -42,9 +42,9 @@
                             <?php
                                 foreach ($usuario_data as $usuario) {
                                     if ($equipo_data['id_usuario'] == $usuario['id_usuario']) {
-                                        echo '<option value="'.$usuario['id_usuario'].'" selected>'.$usuario['nombre'].'</option>';
+                                        echo '<option value="'.$usuario['id_usuario'].'" selected>'.$usuario['nombre'].' '.$usuario['apellido'].'</option>';
                                     } else {
-                                        echo '<option value="'.$usuario['id_usuario'].'">'.$usuario['nombre'].'</option>';
+                                        echo '<option value="'.$usuario['id_usuario'].'">'.$usuario['nombre'].' '.$usuario['apellido'].'</option>';
                                     }
                                 }
                             ?>

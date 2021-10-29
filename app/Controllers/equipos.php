@@ -20,12 +20,10 @@ class equipos extends BaseController
 
    	//Funcion para llenado de tabla con los datos de los equipos
     function equipo(){
+		$db = \Config\Database::connect();
         $equiposModel = new equiposModel();
-        
-        $data['equipo_data'] = $equiposModel->orderBy('id_equipo', 'DESC')->paginate(10);
-
-        //print_r($data['equipo_data']) ;
-
+		$query = $db->query("SELECT e.id_equipo, e.nombre, e.id_usuario, e.puntos, e.goles_favor, e.goles_contra, CONCAT(u.nombre, ' ', u.apellido) as 'entrenador' FROM equipo e INNER JOIN usuario u ON e.id_usuario = u.id_usuario");
+		$data['equipo_data'] = $query->getResult();
         $data['pagination_link'] = $equiposModel->pager;
 
         return view('Equipos_View', $data);
@@ -105,10 +103,13 @@ class equipos extends BaseController
  
 		 $id_equipo = $this->request->getVar('id_equipo');
 		
-		 if($error)
+		 if(!$error)
 		 {
 			 $data['equipo_data'] = $equiposModel->where('id_equipo', $id_equipo)->first();
 			 $data['error'] = $this->validator;
+
+			 $UserModel = new UserModel();
+         	 $data['usuario_data'] = $UserModel->findAll();
 			 echo view('Editar_Equipo', $data);
 		 } 
 		 else 

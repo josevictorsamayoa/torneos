@@ -25,9 +25,9 @@
                             <?php
                                 foreach ($jugador_data as $jugador) {
                                     if ($tarjeta_data['id_jugador'] == $jugador['id_jugador']) {
-                                        echo '<option value="'.$jugador['id_jugador'].'" selected>'.$jugador['nombre'].'</option>';
+                                        echo '<option value="'.$jugador['id_jugador'].'" selected>'.$jugador['nombre'].' '.$jugador['apellido'].'</option>';
                                     } else {
-                                        echo '<option value="'.$jugador['id_jugador'].'">'.$jugador['nombre'].'</option>';
+                                        echo '<option value="'.$jugador['id_jugador'].'">'.$jugador['nombre'].' '.$jugador['apellido'].'</option>';
                                     }
                                 }
                             ?>
@@ -54,8 +54,17 @@
                     <div class="form-group">
                         <label>Color de Tarjeta</label>
                         <select name="color_tarjeta" class="form-control" value="<?php echo $tarjeta_data['color_tarjeta']; ?>">                            
-                            <option value="">Amarilla</option>
-                            <option value="">Roja</option>                            
+                            <?php
+                                if ($tarjeta_data['color_tarjeta'] == 'Amarilla') { ?>
+                                    <option value="Amarilla" selected>Amarilla</option>
+                                    <option value="Roja">Roja</option>
+                            <?php
+                                } else if ($tarjeta_data['color_tarjeta'] == 'Roja'){ ?>
+                                <option value="Amarilla">Amarilla</option>
+                                <option value="Roja" selected>Roja</option>
+                            <?php
+                                }
+                            ?>
                         </select>
                         <?php
                         if($validation->getError('color_tarjeta'))
@@ -103,9 +112,17 @@
                     <div class="form-group">
                         <label>Estado</label>
                         <select name="estado" class="form-control" value="<?php echo $tarjeta_data['estado']; ?>">
-                            <option value="">Seleccione una opción</option>
-                            <option value="">Pagada</option>
-                            <option value="">No Pagada</option>                            
+                        <?php
+                            if ($tarjeta_data['estado'] == 'Pagada') { ?>
+                                <option value="Pagada" selected>Pagada</option>
+                                <option value="No pagada">No Pagada</option>
+                        <?php
+                            } else if ($tarjeta_data['estado'] == 'No pagada'){ ?>
+                            <option value="Pagada">Pagada</option>
+                            <option value="No pagada" selected>No Pagada</option>
+                        <?php
+                            }
+                        ?>                           
                         </select>
                         <?php
                         if($validation->getError('estado'))
@@ -122,9 +139,17 @@
                     <div class="form-group">
                         <label>Sansión Cumplida</label>
                         <select name="cumplio_sansion" class="form-control" value="<?php echo $tarjeta_data['cumplio_sansion']; ?>">
-                            <option value="">Seleccione una opción</option>
-                            <option value="">Si</option>
-                            <option value="">No</option>                            
+                        <?php
+                            if ($tarjeta_data['cumplio_sansion'] == 'Si') { ?>
+                                <option value="Si" selected>Si</option>
+                                <option value="No">No</option>
+                        <?php
+                            } else if ($tarjeta_data['cumplio_sansion'] == 'No'){ ?>
+                                <option value="Si">Si</option>
+                                <option value="No" selected>No</option>
+                        <?php
+                            }
+                        ?>
                         </select>
                         <?php
                         if($validation->getError('cumplio_sansion'))

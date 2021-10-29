@@ -38,7 +38,7 @@
                                 <option value="">Seleccione un jugador</option>
                                 <?php
                                     foreach ($jugador_data as $jugador) {
-                                        echo '<option value="'.$jugador['id_jugador'].'">'.$jugador['nombre'].'</option>';
+                                        echo '<option value="'.$jugador['id_jugador'].'">'.$jugador['nombre'].' '.$jugador['apellido'].'</option>';
                                     }
                                 ?>
                                 
@@ -62,8 +62,8 @@
                         <label>Color de Tarjeta</label>
                         <select name="color_tarjeta" class="form-control">
                             <option value="">Seleccione un color</option>
-                            <option value="">Amarilla</option>
-                            <option value="">Roja</option>                            
+                            <option value="Amarilla">Amarilla</option>
+                            <option value="Roja">Roja</option>                            
                         </select>
                         <?php
                         if($validation->getError('color_tarjeta'))
@@ -111,8 +111,8 @@
                         <label>Estado</label>
                         <select name="estado" class="form-control">
                             <option value="">Seleccione una opción</option>
-                            <option value="">Pagada</option>
-                            <option value="">No Pagada</option>                            
+                            <option value="Pagada">Pagada</option>
+                            <option value="No pagada">No Pagada</option>                            
                         </select>
                         <?php
                         if($validation->getError('estado'))
@@ -130,8 +130,8 @@
                         <label>Sansión Cumplida</label>
                         <select name="cumplio_sansion" class="form-control">
                             <option value="">Seleccione una opción</option>
-                            <option value="">Si</option>
-                            <option value="">No</option>                            
+                            <option value="Si">Si</option>
+                            <option value="No">No</option>                            
                         </select>
                         <?php
                         if($validation->getError('cumplio_sansion'))

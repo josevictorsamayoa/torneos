@@ -17,10 +17,9 @@ class tarjetas extends BaseController
    	//Funcion para llenado de tabla con los datos de los equipos
     function tarjeta(){
         $tarjetasModel = new tarjetasModel();
-        
-        $data['tarjeta_data'] = $tarjetasModel->orderBy('id_tarjeta', 'DESC')->paginate(10);
-
-       // print_r($data['tarjeta_data']) ;
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT t.id_tarjeta, t.id_jugador, t.id_partido, t.color_tarjeta, t.fecha, t.motivo, t.estado, t.cumplio_sansion, concat(j.nombre, ' ', j.apellido) as 'jugador', p.nombre as 'partido' FROM tarjeta t INNER JOIN jugador j ON t.id_jugador = j.id_jugador INNER JOIN partido p ON t.id_partido = p.id_partido");
+		$data['tarjeta_data'] = $query->getResult();
 
         $data['pagination_link'] = $tarjetasModel->pager;
 
@@ -112,11 +111,13 @@ class tarjetas extends BaseController
  
 		 $id_tarjeta = $this->request->getVar('id_tarjeta');
 		
-		 if($error)
+		 if(!$error)
 		 {
-			 $data['tarjeta_data'] = $tarjetasModel->where('id_tarjeta', $id_tarjeta)->first();
-			 $data['error'] = $this->validator;
-			 echo view('Editar_Equipo', $data);
+            $tarjetasModel = new tarjetasModel();
+            $data['tarjeta_data'] = $tarjetasModel->orderBy('id_tarjeta', 'DESC')->paginate(10);
+            $data['pagination_link'] = $tarjetasModel->pager;
+    
+            echo view('Trajetas_View', $data);
 		 } 
 		 else 
 		 {
