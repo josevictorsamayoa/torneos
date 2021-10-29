@@ -33,6 +33,7 @@
                     <div class="col">Listado de Jugadores</div>
                     <div class="col text-right">
                         <a href="<?php echo base_url("/torneos/agregar_jugadores")?>" class="btn btn-success btn-sm">Crear</a>
+                        <a href="<?php echo base_url("/equipos/equipo")?>" class="btn btn-dark btn-sm">Regresar</a>
                     </div>
                 </div>
             </div>
@@ -91,6 +92,14 @@
 </body>
 </html>
 <style>
+
+ body {
+	margin: 0;
+	background-attachment: fixed;
+	background-position: center center;
+	background-image: url(../../img/estadio.jpg);
+	background-repeat: no repeat;
+} 
 .pagination li a
 {
     position: relative;

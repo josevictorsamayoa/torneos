@@ -2,78 +2,78 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
 use App\Models\jugadoresModel;
 use App\Models\equiposModel;
+use App\Models\UserModel;
 
-class torneos extends BaseController
+class equipos extends BaseController
 {
 	function index()
 	{
-		return view('Login_View');
+		return view('Equipos_View');
 	}
 
-	//Funcion para llenado de tabla con los datos de los jugadores
-    function jugadores(){
-        $jugadoresModel = new jugadoresModel();
+   	//Funcion para llenado de tabla con los datos de los equipos
+    function equipo(){
+        $equiposModel = new equiposModel();
+        
+        $data['equipo_data'] = $equiposModel->orderBy('id_equipo', 'DESC')->paginate(10);
 
-        $data['jugador_data'] = $jugadoresModel->orderBy('id_jugador', 'DESC')->paginate(10);
+        //print_r($data['equipo_data']) ;
 
-        $data['pagination_link'] = $jugadoresModel->pager;
+        $data['pagination_link'] = $equiposModel->pager;
 
-        return view('Jugadores_View', $data);
+        return view('Equipos_View', $data);
     }
 
 	//Funcion que muestra la vista de crear jugadores
-	function agregar_jugadores(){
-		$equiposModel = new equiposModel();
-        $data['equipos_data'] = $equiposModel->findAll();
-		return view('Crear_Jugador', $data);
+	function agregar_equipos(){
+		$UserModel = new UserModel();
+        $data['usuario_data'] = $UserModel->findAll();
+		return view('Crear_Equipo', $data);
     }
 
 
-	//Funcion para agregar nuevos jugadores
-	function add_validation_jugador(){
+	//Funcion para agregar nuevos equipos
+	function add_validation_equipo(){
 		helper(['form', 'url']);
         
         $error = $this->validate([
-            'nombres' 	=> 'required|min_length[3]',
-			'apellidos' => 'required|min_length[3]',
-			'actanac' 	=> 'required|min_length[3]',
-            'fecnac' 	=> 'required|valid_date',
-            'equipo'	=> 'required',
-			'camisola'	=> 'required'
+            'nombre' 	=> 'required|min_length[3]',
+			'id_usuario' => 'required',
+			'puntos' 	=> 'required',
+            'goles_favor' 	=> 'required',
+            'goles_contra'	=> 'required'
         ]);
 
         if(!$error)
         {
-        	echo view('Crear_Jugador', [
+        	echo view('Crear_Equipo', [
                 'error' => $this->validator
             ]);
         } 
         else 
         {
-            $jugadoresModel = new jugadoresModel();
+            $equiposModel = new equiposModel();
             
-            $jugadoresModel->save([
-                'nombre'   => $this->request->getVar('nombres'),
-                'apellido'  => $this->request->getVar('apellidos'),
-				'acta_nacimiento'   => $this->request->getVar('actanac'),
-				'fecha_nac'   => $this->request->getVar('fecnac'),
-				'id_equipo'   => $this->request->getVar('equipo'),
-				'numero'   => $this->request->getVar('camisola'),
+            $equiposModel->save([
+                'nombre'   => $this->request->getVar('nombre'),
+                'id_usuario'  => $this->request->getVar('id_usuario'),
+				'puntos'   => $this->request->getVar('puntos'),
+				'goles_favor'   => $this->request->getVar('goles_favor'),
+				'goles_contra'   => $this->request->getVar('goles_contra'),
             ]);          
             
             $session = \Config\Services::session();
 
-            $session->setFlashdata('success', 'Usuario Agregado');
+            $session->setFlashdata('success', 'Equipo Agregado');
 
-            return $this->response->redirect(site_url('torneos/jugadores'));
+            return $this->response->redirect(site_url('equipos/equipo'));
         }
     }
 
-	//Funcion para editar jugadores
-	 function editar_jugadores ($id_jugador = null)
+	//Funcion para editar equipos
+	 function editar_equipos ($id_jugador = null)
 	 {
 		 $jugadoresModel = new jugadoresModel();
 		 $data['jugador_data'] = $jugadoresModel->where('id_jugador', $id_jugador)->first();
@@ -84,7 +84,7 @@ class torneos extends BaseController
 		 return view('Editar_Jugador', $data);
 	 }
  
-	 function edit_validation_jugador()
+	 function edit_validation_equipo()
 	 {
 		 helper(['form', 'url']);
 		 
@@ -130,19 +130,20 @@ class torneos extends BaseController
 	 }
 
 	 //Funcion para eliminar jugadores
-	 function eliminar_jugador ($id)
+	 function eliminar_equipo ($id)
     {
-        $jugadoresModel = new jugadoresModel();
+        $equiposModel = new equiposModel();
 
-        $jugadoresModel->where('id_jugador', $id)->delete($id);
+        $equiposModel->where('id_equipo', $id)->delete($id);
 
         $session = \Config\Services::session();
 
-        $session->setFlashdata('success', 'Jugador eliminado');
+        $session->setFlashdata('success', 'Equipo eliminado');
 
-        return $this->response->redirect(site_url('/torneos/jugadores'));
+        return $this->response->redirect(site_url('/equipos/equipo'));
     }
 
+    
 }
 
 ?>

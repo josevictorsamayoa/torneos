@@ -1,16 +1,35 @@
 body {
-    font-family: 'Overpass', sans-serif;
+    font-family: 'Calibri', sans-serif;
     font-weight: normal;
     font-size: 100%;
-    color: #57E2E5;
+    color: #000000;
     
     margin: 0;
 	background-attachment: fixed;
 	background-position: center center;
-	background-image: url(../img/estadio.jpg);
+	background-image: url(../../img/estadio.jpg);
 	background-repeat: no repeat;
 
     /*background-color: #57E2E5;*/
+}
+
+.pagination li a
+{
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+}
+
+.pagination li.active a {
+    z-index: 1;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
 }
 
 
