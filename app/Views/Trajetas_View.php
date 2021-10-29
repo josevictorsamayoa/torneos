@@ -6,7 +6,7 @@
      content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/login.css">
-    <title>Equipos</title>
+    <title>Tarjetas</title>
     <!--  -->
 </head>
 <body>
@@ -31,9 +31,9 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col">Listado de Equipos</div>
+                    <div class="col">Tarjetas por jugador</div>
                     <div class="col text-right">
-                        <a href="<?php echo base_url("/equipos/agregar_equipos")?>" class="btn btn-success btn-sm">Crear</a>
+                        <a href="<?php echo base_url("/tarjetas/agregar_tarjetas")?>" class="btn btn-success btn-sm">Crear</a>
                     </div>
                 </div>
             </div>
@@ -42,32 +42,37 @@
                     <table class="table table-striped table-bordered">
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Entrenador</th>
-                            <th>Puntos</th>
-                            <th>Goles a Favor</th>
-                            <th>Goles en Contra</th>
+                            <th>Jugador</th>
+                            <th>Partido</th>
+                            <th>Color de Tarjeta</th>
+                            <th>Fecha</th>
+                            <th>Motivo</th>
+                            <th>Estado</th>
+                            <th>Sansión Cumplida</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
-                            <th>Jugadores</th>
+                            <th>Pagar</th>
                         </tr>
                         <?php
                        // echo $equipo_data;
-                     if($equipo_data)
+                     if($tarjeta_data)
                         {
-                            foreach($equipo_data as $equipo)
+                            foreach($tarjeta_data as $tarjeta)
                             {
                                 echo '
                                 <tr>
-                                    <td>'.$equipo["id_equipo"].'</td>
-                                    <td>'.$equipo["nombre"].'</td>
-                                    <td>'.$equipo["id_usuario"].'</td>
-                                    <td>'.$equipo["puntos"].'</td>
-                                    <td>'.$equipo["goles_favor"].'</td>
-                                    <td>'.$equipo["goles_contra"].'</td>
-                                    <td><a href="'.base_url().'/equipos/editar_equipos/'.$equipo["id_equipo"].'" class="btn btn-sm btn-warning">Editar</a></td>
-                                    <td><button type="button" onclick="eliminar_equipo('.$equipo["id_equipo"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
-                                    <td><a href="'.base_url().'/torneos/jugadores/'.$equipo["id_equipo"].'" class="btn btn-sm btn-info">Ver</a></td>
+                                    <td>'.$tarjeta["id_tarjeta"].'</td>
+                                    <td>'.$tarjeta["id_jugador"].'</td>
+                                    <td>'.$tarjeta["id_usuario"].'</td>
+                                    <td>'.$tarjeta["id_partido"].'</td>
+                                    <td>'.$tarjeta["color_tarjeta"].'</td>
+                                    <td>'.$tarjeta["fecha"].'</td>
+                                    <td>'.$tarjeta["motivo"].'</td>
+                                    <td>'.$tarjeta["estado"].'</td>
+                                    <td>'.$tarjeta["cumplio_sansion"].'</td>
+                                    <td><a href="'.base_url().'/equipos/editar_tarjetas/'.$tarjeta["id_tarjeta"].'" class="btn btn-sm btn-warning">Editar</a></td>
+                                    <td><button type="button" onclick="eliminar_tarjeta('.$tarjeta["id_tarjeta"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    <td><a href="'.base_url().'/pagos/pago/'.$tarjeta["id_tarjeta"].'" class="btn btn-sm btn-info">Pagar</a></td>
                                 </tr>';
                             }
                         }
@@ -80,7 +85,7 @@
 
                     if($pagination_link)
                     {
-                        $pagination_link->setPath('equipos');
+                        $pagination_link->setPath('tarjetas');
 
                         echo $pagination_link->links();
                     }
@@ -99,9 +104,9 @@
 <script>
 function eliminar_equipo (id)
 {
-    if(confirm("¿Esta seguro de eliminar el equipo?"))
+    if(confirm("¿Esta seguro de eliminar la tarjeta?"))
     {
-        window.location.href="<?php echo base_url(); ?>/equipos/eliminar_equipo/"+id;
+        window.location.href="<?php echo base_url(); ?>/equipos/eliminar_tarjeta/"+id;
     }
     return false;
 }

@@ -5,29 +5,25 @@ namespace App\Controllers;
 use App\Models\equiposModel;
 use App\Models\UserModel;
 
-class equipos extends BaseController
+class tarjetas extends BaseController
 {
 	function index()
 	{
-		return view('Equipos_View');
+		return view('Tarjetas_View');
 	}
 
-    function test()
-	{
-		return view('Editar_Jugador');
-	}
-
+    
    	//Funcion para llenado de tabla con los datos de los equipos
-    function equipo(){
-        $equiposModel = new equiposModel();
+    function tarjeta(){
+        $tarjetasModel = new tarjetasModel();
         
-        $data['equipo_data'] = $equiposModel->orderBy('id_equipo', 'DESC')->paginate(10);
+        $data['tarjeta_data'] = $tarjetasModel->orderBy('id_equipo', 'DESC')->paginate(10);
 
         //print_r($data['equipo_data']) ;
 
-        $data['pagination_link'] = $equiposModel->pager;
+        $data['pagination_link'] = $tarjetasModel->pager;
 
-        return view('Equipos_View', $data);
+        return view('Tarjetas_View', $data);
     }
 
 	//Funcion que muestra la vista de crear jugadores
