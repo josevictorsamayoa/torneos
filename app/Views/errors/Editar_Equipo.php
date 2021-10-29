@@ -6,7 +6,7 @@
      content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Editar Jugador</title>
-    <!-- -->
+    <!--  -->
 </head>
 <body>
     <div class="container">
