@@ -102,6 +102,22 @@
                             
                         </select>
                     </div>
+
+                    <div class="form-group">
+                        <label>CUI</label>
+                        <input type="number" name="cui" class="form-control" value="<?php echo $jugador_data['cui'];?>">
+
+                        <?php 
+                        if($validation->getError('cui'))
+                        {
+                            echo "
+                            <div class='alert alert-danger mt-2'>
+                            ".$validation->getError('cui')."
+                            </div>
+                            ";
+                        }
+                        ?>
+                    </div>
                    
                     <div class="form-group">
                         <label>No. Camisola</label>

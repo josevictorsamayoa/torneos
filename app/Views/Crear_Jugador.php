@@ -100,25 +100,22 @@
                         </select>
                     </div>
 
-                   <!-- <div class="form-group">
-                        <label>Equipo</label>
-                        <select name="equipo" class="form-control">
-                            <option value="">Seleccione un Equipo</option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                        </select>
-
-                        <?php/*
-
-                        if($validation->getError('equipo'))
+                    <div class="form-group">
+                        <label>CUI</label>
+                        <input type="number" name="cui" class="form-control" />
+                        <?php
+                        if($validation->getError('cui'))
                         {
-                            echo '<div class="alert alert-danger mt-2">
-                            '.$validation->getError("equipo").'
-                            </div>';
-                        }*/
-
+                            echo "
+                            <div class='alert alert-danger mt-2'>
+                            ".$validation->getError('cui')."
+                            </div>
+                            ";
+                        }
                         ?>
-                    </div>-->
+                    </div>
+                    
+
                     <div class="form-group">
                         <label>No. Camisola</label>
                         <input type="number" name="camisola" class="form-control" />
