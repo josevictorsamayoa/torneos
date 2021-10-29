@@ -84,7 +84,7 @@ class torneos extends BaseController
 
             $session->setFlashdata('success', 'Jugador Agregado');
 
-            return $this->response->redirect(site_url('torneos/jugadores'));
+            return $this->response->redirect(site_url('torneos/jugadores/'.$this->request->getVar('id_equipo')));
         }
     }
 
