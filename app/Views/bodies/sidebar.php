@@ -4,7 +4,7 @@
         <div class="sidebar">
             <div class="profile">
                 <!--Profile Image-->
-                <img src="../img/logosiu.jpg">
+                <img src="../../img/logosiu.jpg">
                 <!--Profile Title & Descruption-->
                 <h3>Los Tukis</h3>
                 <p>Admin</p>
