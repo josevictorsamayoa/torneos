@@ -23,6 +23,7 @@ class equipos extends BaseController
 		$db = \Config\Database::connect();
         $equiposModel = new equiposModel();
 		$query = $db->query("SELECT e.id_equipo, e.nombre, e.id_usuario, e.puntos, e.goles_favor, e.goles_contra, CONCAT(u.nombre, ' ', u.apellido) as 'entrenador' FROM equipo e INNER JOIN usuario u ON e.id_usuario = u.id_usuario");
+		$data['equipo_data'] = $equiposModel->orderBy('id_equipo', 'DESC')->paginate(10);
 		$data['equipo_data'] = $query->getResult();
         $data['pagination_link'] = $equiposModel->pager;
 
