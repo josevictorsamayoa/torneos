@@ -10,16 +10,15 @@
 </head>
 <body>
 
-
     <div class="container">
         
         <h2 class="text-center mt-4 mb-4">Agregar Partidos</h2>
 
         <?php
 
-        
-        print_r($calendario_data) ;
-
+        echo "<pre>";
+        print_r($calendario_data);
+        echo "<pre>";
 
         $validation = \Config\Services::validation();
 
@@ -38,16 +37,14 @@
                 <form method="post" action="<?php echo base_url("/partidos/add_validation_partido")?>">
                     <div class="form-group">
                             <label>Partido</label>
-                            <select name="nombre" class="form-control">
-                                <option value="">Seleccione un partido</option>
-                                <?php
-                                    foreach ($partido_data as $partido) {
-                                        echo '<option value="'.$partido['nombre'].'">'.$partido['nombre'].'</option>';
-                                    }
-                                ?>
-                                
-                            </select>
-                    </div>  
+                            <input type="text" name="nombre" class="form-control" />
+                            <?php
+                                if($validation->getError('nombre'))
+                                {
+                                    echo '<div class="alert alert-danger mt-2">'.$validation->getError('nombre').'</div>';
+                                }
+                            ?>
+                        </div>  
                     
                     <div class="form-group">
                             <label>Fechas</label>
@@ -55,7 +52,7 @@
                                 <option value="">Seleccione un opción</option>
                                 <?php/*
                                     foreach ($calendario_data as $calendario) {
-                                        echo '<option value="'.$calendario['id_calendario'].'">'.$calendario['fecha_inicio'].' '.$calendario['fecha_fin'].'</option>';
+                                        echo '<option value="'.$calendario['id_calendario'].'">Del '.$calendario['fecha_inicio'].' al '.$calendario['fecha_fin'].'</option>';
                                     }*/
                                 ?>
                                 

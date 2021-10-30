@@ -5,7 +5,7 @@
     <meta name="viewport"
      content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <title>Editar Jugador</title>
+    <title>Editar Equipo</title>
     <!--  -->
 </head>
 <body>
@@ -14,7 +14,7 @@
         <?php 
         $validation = \Config\Services::validation();
         ?>
-        <h2 class="text-center mt-4 mb-4">Editar Jugador</h2>
+        <h2 class="text-center mt-4 mb-4">Editar Equipo</h2>
         <div class="card">
             <div class="card-header">Editar datos</div>
             <div class="card-body">

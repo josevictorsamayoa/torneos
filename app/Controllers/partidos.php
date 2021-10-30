@@ -34,9 +34,10 @@ class partidos extends BaseController
 
         $calendarioModel = new calendarioModel();
         $data['calendario_data'] = $calendarioModel->findAll();
-        
+
         $partidosModel = new partidosModel();
         $data['partido_data'] = $partidosModel->findAll();
+
 		return view('Crear_Partidos', $data);
     }
 
@@ -50,7 +51,7 @@ class partidos extends BaseController
             'id_calendario'         => 'required',
 			'fecha_hora_juego'      => 'required',
 			'id_equipo1' 	        => 'required',
-            'id_equipo2' 	        => 'required',
+            'id_esquipo2' 	        => 'required',
             'jugado'	            => 'required',
         ]);
 
@@ -62,14 +63,14 @@ class partidos extends BaseController
         } 
         else 
         {
-            $tarjetasModel = new tarjetasModel();
+            $partidosModel = new partidosModel();
             
-            $tarjetasModel->save([
+            $partidosModel->save([
                 'nombre'               => $this->request->getVar('nombre'),
                 'id_calendario'        => $this->request->getVar('id_calendario'),
                 'fecha_hora_juego'     => $this->request->getVar('fecha_hora_juego'),
 				'id_equipo1'           => $this->request->getVar('id_equipo1'),
-				'id_equipo2'           => $this->request->getVar('id_equipo2'),
+				'id_esquipo2'           => $this->request->getVar('id_equipo2'),
 				'jugado'               => $this->request->getVar('jugado'),
             ]);          
             
@@ -82,17 +83,18 @@ class partidos extends BaseController
     }
 
 	//Funcion para editar tarjetas
-	 function editar_tarjetas ($id_tarjeta = null)
+	 function editar_partido ($id_partido = null)
 	 {
-         $tarjetasModel = new tarjetasModel();
-		 $data['tarjeta_data'] = $tarjetasModel->where('id_tarjeta', $id_tarjeta)->first();
-		
-         $jugadoresModel = new jugadoresModel();
-         $data['jugador_data'] = $jugadoresModel->findAll();
          $partidosModel = new partidosModel();
-         $data['partido_data'] = $partidosModel->findAll();
+		 $data['partido_data'] = $partidosModel->where('id_partido', $id_partido)->first();
+		
+        $calendarioModel = new calendarioModel();
+        $data['calendario_data'] = $calendarioModel->findAll();
 
-		 return view('Editar_Tarjeta', $data);
+        $equiposModel = new equiposModel();
+        $data['equipo_data'] = $equiposModel->findAll();
+
+		 return view('Editar_Partido', $data);
          //return view('hola');
 	 }
  
@@ -101,61 +103,59 @@ class partidos extends BaseController
 		 helper(['form', 'url']);
 		 
 		 $error = $this->validate([
-			'id_jugador' 	    => 'required',
-			'id_partido'        => 'required',
-			'color_tarjeta' 	=> 'required',
-            'fecha' 	        => 'required',
-            'motivo'	        => 'required',
-            'estado' 	        => 'required',
-            'cumplio_sansion'	=> 'required'
+			'nombre' 	            => 'required',
+            'id_calendario'         => 'required',
+			'fecha_hora_juego'      => 'required',
+			'id_equipo1' 	        => 'required',
+            'id_esquipo2' 	        => 'required',
+            'jugado'	            => 'required',
 		 ]);
  
-		 $tarjetasModel = new tarjetasModel();
+		 $partidosModel = new partidosModel();
  
-		 $id_tarjeta = $this->request->getVar('id_tarjeta');
+		 $id_partido = $this->request->getVar('id_partido');
 		
 		 if(!$error)
 		 {
-            $tarjetasModel = new tarjetasModel();
-            $data['tarjeta_data'] = $tarjetasModel->orderBy('id_tarjeta', 'DESC')->paginate(10);
-            $data['pagination_link'] = $tarjetasModel->pager;
+            $partidosModel = new partidosModel();
+            $data['tarjeta_data'] = $partidosModel->orderBy('id_partido', 'DESC')->paginate(10);
+            $data['pagination_link'] = $partidosModel->pager;
     
-            echo view('Trajetas_View', $data);
+            echo view('Partidos_View', $data);
 		 } 
 		 else 
 		 {
 			 $data = [
-				'id_jugador'        => $this->request->getVar('id_jugador'),
-                'id_partido'        => $this->request->getVar('id_partido'),
-				'color_tarjeta'     => $this->request->getVar('color_tarjeta'),
-				'fecha'             => $this->request->getVar('fecha'),
-				'motivo'            => $this->request->getVar('motivo'),
-                'estado'            => $this->request->getVar('estado'),
-                'cumplio_sansion'   => $this->request->getVar('cumplio_sansion'),
+				'nombre'               => $this->request->getVar('nombre'),
+                'id_calendario'        => $this->request->getVar('id_calendario'),
+                'fecha_hora_juego'     => $this->request->getVar('fecha_hora_juego'),
+				'id_equipo1'           => $this->request->getVar('id_equipo1'),
+				'id_esquipo2'           => $this->request->getVar('id_equipo2'),
+				'jugado'               => $this->request->getVar('jugado'),
 			 ];
  
-			 $tarjetasModel->update($id_tarjeta, $data);
+			 $partidosModel->update($id_partido, $data);
  
 			 $session = \Config\Services::session();
  
-			 $session->setFlashdata('success', 'Tarjeta actualizada');
+			 $session->setFlashdata('success', 'Partido actualizado');
  
-			 return $this->response->redirect(site_url('/tarjetas/tarjeta'));
+			 return $this->response->redirect(site_url('/partidos/partido'));
 		 }
 	 }
 
 	 //Funcion para eliminar jugadores
-	 function eliminar_tarjeta ($id)
+	 function eliminar_partido ($id)
     {
-        $tarjetasModel = new tarjetasModel();
+        $partidosModel = new partidosModel();
 
-        $tarjetasModel->where('id_tarjeta', $id)->delete($id);
+        $partidosModel->where('id_partido', $id)->delete($id);
 
         $session = \Config\Services::session();
 
         $session->setFlashdata('success', 'Tarjeta eliminado');
 
-        return $this->response->redirect(site_url('/tarjetas/tarjeta'));
+        return $this->response->redirect(site_url('/partidos/partido'));
     }
 
     

@@ -20,8 +20,7 @@
         
         <h2 class="text-center mt-4 mb-4">Agregar Jugadores</h2>
 
-        <?php
-
+        <?php        
         $validation = \Config\Services::validation();
 
         ?>

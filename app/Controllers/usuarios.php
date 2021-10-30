@@ -8,12 +8,21 @@ class usuarios extends BaseController
 {
 	function index()
 	{
-        $userModel = new UserModel();
-        $data['users'] = $userModel->orderBy('id_usuario', 'DESC')->paginate(10);
-        $data['pagination_link'] = $userModel->pager;
-
+        
 		return view('UserView');
 	}
+
+	//Funcion para llenado de tabla con los datos de los equipos
+    function usuario(){
+		$UserModel = new UserModel();
+
+        $data['usuario_data'] = $userModel->orderBy('id_usuario', 'DESC')->paginate(10);
+		$data['usuario_data'] = $query->getResult();
+        $data['pagination_link'] = $UserModel->pager;
+
+        return view('UserView', $data);
+    
+    }
 
     // function test()
 
