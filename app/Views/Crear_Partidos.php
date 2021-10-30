@@ -21,6 +21,11 @@
         
         <h2 class="text-center mt-4 mb-4">Agregar Partidos</h2>
 
+        <?php
+
+        $validation = \Config\Services::validation();
+
+        ?>
         <div class="card">
             <div class="card-header">
                 <div class="row">
