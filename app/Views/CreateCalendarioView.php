@@ -5,13 +5,18 @@
     <meta name="viewport"
      content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <title>Agregar Jugadores</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <title>Agregar Fechas</title>
     <!--  -->
 </head>
 <body>
     <div class="container">
-        
-        <h2 class="text-center mt-4 mb-4">Agregar Jugadores</h2>
+        <!-- Sidebar-->
+    <?php 
+        include_once '../app/Views/bodies/sidebar.php';
+    ?>
+        <h2 class="text-center mt-4 mb-4">Agregar Fechas</h2>
 
         <?php
 
@@ -21,7 +26,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col">Ingrese los datos del jugador</div>
+                    <div class="col">Ingrese el rango de fechas de los partidos</div>
                     <div class="col text-right">
                         
                     </div>

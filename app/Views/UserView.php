@@ -6,6 +6,7 @@
      content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../../css/main.css">
     <title>Usuarios</title>
     <!--  -->
 </head>
@@ -13,12 +14,17 @@
 
     <div class="container">
         
+    <!-- Sidebar-->
+        <?php 
+            include_once '../app/Views/bodies/sidebar.php';
+        ?>
+
         <h2 class="text-center mt-4 mb-4">Usuarios</h2>
 
         <?php
-        echo "<pre>";
-        print_r($usuario_data);
-        echo "<pre>";
+        //echo "<pre>";
+        //print_r($usuario_data);
+        //echo "<pre>";
         $session = \Config\Services::session();
 
         if($session->getFlashdata('success'))
@@ -52,9 +58,9 @@
                         </tr>
                         <?php
 
-                      /*if($usuario_data)
+                      if($users)
                         {
-                            foreach($usuario_data as $user)
+                            foreach($users as $user)
                             {
                                 echo '
                                 <tr>
@@ -67,7 +73,7 @@
                                     <td><button type="button" onclick="eliminar_usuario('.$user["id_usuario"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
                                 </tr>';
                             }
-                        }*/
+                        }
 
                         ?>
                     </table>

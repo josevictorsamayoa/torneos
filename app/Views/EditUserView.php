@@ -5,13 +5,19 @@
     <meta name="viewport"
      content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <title>Agregar Usuario</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <title>Editar Usuario</title>
     <!--  -->
 </head>
 <body>
     <div class="container">
+        <!-- Sidebar-->
+        <?php 
+            include_once '../app/Views/bodies/sidebar.php';
+        ?>
         
-        <h2 class="text-center mt-4 mb-4">Agregar Usuario</h2>
+        <h2 class="text-center mt-4 mb-4">Editar Usuario</h2>
 
         <?php
 
@@ -21,7 +27,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col">Ingrese los datos del equipo</div>
+                    <div class="col">Ingrese los datos del usuario</div>
                     <div class="col text-right">
                         
                     </div>
@@ -98,12 +104,13 @@
                             ";
                         }
                         ?>
-                    </div>                                
-                    </div>
+                    </div>    
                     <div class="form-group">
                         <input type="hidden" name="id_user" value="<?php echo $user["id_usuario"]; ?>" />
-                        <button type="submit" class="btn btn-primary">Agregar</button>
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    </div>                            
                     </div>
+                    
                 </form>
             </div>
         </div>

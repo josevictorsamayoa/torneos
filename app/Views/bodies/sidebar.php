@@ -12,7 +12,7 @@
              <!--Menu item-->
              <ul>
                 <li>
-                    <a href="<?php echo base_url("/equipos/equipo")?>" class="active">
+                    <a href="<?php echo base_url("/equipos/equipo")?>">
                         <span class="icon"><i class="fas fa-home"></i></span>
                         <span class="item">Equipos</span>
                     </a>
@@ -23,12 +23,7 @@
                         <span class="item">Partidos</span>
                     </a>
                 </li>
-                <li>
-                    <a href="<?php echo base_url("/calendarios/calendario")?>">
-                        <span class="icon"><i class="fas fa-user-friends"></i></span>
-                        <span class="item">Calendario</span>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="<?php echo base_url("/tarjetas/tarjeta")?>">
                         <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
@@ -39,6 +34,18 @@
                     <a href="pagos.php">
                         <span class="icon"><i class="fas fa-database"></i></span>
                         <span class="item">Posiciones</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url("/calendarios/index")?>">
+                        <span class="icon"><i class="fas fa-user-friends"></i></span>
+                        <span class="item">Calendario</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url("/usuarios/index")?>">
+                        <span class="icon"><i class="fas fa-database"></i></span>
+                        <span class="item">Usuarios</span>
                     </a>
                 </li>
                 <li>

@@ -142,8 +142,8 @@ class torneos extends BaseController
 			 $session = \Config\Services::session();
  
 			 $session->setFlashdata('success', 'Jugador actualizado');
- 
-			 return $this->response->redirect(site_url('/torneos/jugadores'));
+			 
+			 return $this->response->redirect(site_url('torneos/jugadores/'.$this->request->getVar('id_equipo')));
 		 }
 	 }
 

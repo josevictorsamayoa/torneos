@@ -96,19 +96,18 @@ class usuarios extends BaseController
 			 $data = [
 				'nombre'   => $this->request->getVar('nombre'),
                 'apellido'  => $this->request->getVar('apellido'),
-				'acta_nacimiento'   => $this->request->getVar('acta_nacimiento'),
-				'fecha_nac'   => $this->request->getVar('fecha_nac'),
-				'id_equipo'   => $this->request->getVar('id_equipo'),
-				'numero'   => $this->request->getVar('numero'),
+				'rol'   => $this->request->getVar('rol'),
+				'correo'   => $this->request->getVar('correo'),
+				'password'   => $this->request->getVar('password')
 			 ];
  
 			 $userModel->update($id_user, $data);
  
 			 $session = \Config\Services::session();
  
-			 $session->setFlashdata('success', 'Jugador actualizado');
+			 $session->setFlashdata('success', 'Usuario actualizado');
  
-			 return $this->response->redirect(site_url('/torneos/jugadores'));
+			 return $this->response->redirect(site_url('/usuarios/index'));
 		 }
 	 }
 
