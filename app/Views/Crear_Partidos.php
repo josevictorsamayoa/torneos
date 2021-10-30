@@ -23,10 +23,6 @@
 
         <?php
 
-        //echo "<pre>";
-        //print_r($calendario_data);
-        //echo "<pre>";
-
         $validation = \Config\Services::validation();
 
         ?>
@@ -57,10 +53,10 @@
                             <label>Fechas</label>
                             <select typer="text" name="id_calendario" class="form-control">
                                 <option value="">Seleccione un opción</option>
-                                <?php/*
+                                <?php
                                     foreach ($calendario_data as $calendario) {
-                                        echo '<option value="'.$calendario['id_calendario'].'">Del '.$calendario['fecha_inicio'].' al '.$calendario['fecha_fin'].'</option>';
-                                    }*/
+                                        echo '<option value="'.$calendario['id_calendario'].'">Del '.$calendario['fecha_inico'].' al '.$calendario['fecha_fin'].'</option>';
+                                    }
                                 ?>
                                 
                             </select>
