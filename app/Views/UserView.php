@@ -34,7 +34,7 @@
                 <div class="row">
                     <div class="col">Listado de Usuarios</div>
                     <div class="col text-right">
-                        <a href="<?php echo base_url("/torneos/agregar_jugadores")?>" class="btn btn-success btn-sm">Crear</a>
+                        <a href="<?php echo base_url("/usuarios/agregar_usuario")?>" class="btn btn-success btn-sm">Crear</a>
                     </div>
                 </div>
             </div>
@@ -63,7 +63,7 @@
                                     <td>'.$user["apellido"].'</td>
                                     <td>'.$user["rol"].'</td>
                                     <td>'.$user["correo"].'</td>
-                                    <td><a href="'.base_url().'/usuarios/editar_usuarios/'.$user["id_usuario"].'" class="btn btn-sm btn-warning">Editar</a></td>
+                                    <td><a href="'.base_url().'/usuarios/editar_usuario/'.$user["id_usuario"].'" class="btn btn-sm btn-warning">Editar</a></td>
                                     <td><button type="button" onclick="eliminar_usuario('.$user["id_usuario"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
                                 </tr>';
                             }
@@ -114,7 +114,7 @@
 </style>
 
 <script>
-function eliminar_jugador (id)
+function eliminar_usuario (id)
 {
     if(confirm("¿Esta seguro de eliminar el usuario?"))
     {

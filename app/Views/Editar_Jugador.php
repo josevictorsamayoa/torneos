@@ -155,12 +155,12 @@
 </html>
 
 <style>
-/* body {
+body {
 	margin: 0;
 	background-attachment: fixed;
 	background-position: center center;
 	background-image: url(../../img/estadio.jpg);
 	background-repeat: no repeat;
-} */
+}
 
 </style>
