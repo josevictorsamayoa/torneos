@@ -15,7 +15,7 @@
         
         <!-- Link hacia el archivo de estilos css -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/Login.css">
+        <link rel="stylesheet" href="../css/Login.css">
         
                  
     </head>
@@ -27,7 +27,7 @@
             <div id="central">
                 <div id="login">
                     <div class="titulo">
-                        <img class="logo" src=  "img/logosiu.JPG">
+                        <img class="logo" src=  "../img/logosiu.JPG">
                     </div>
                     <form method="post" action="<?php echo base_url("/torneos/jugadores")?>">
                         <input type="text" name="correo" placeholder="Correo" required>
