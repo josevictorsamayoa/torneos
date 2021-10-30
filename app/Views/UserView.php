@@ -16,7 +16,9 @@
         <h2 class="text-center mt-4 mb-4">Usuarios</h2>
 
         <?php
-
+        echo "<pre>";
+        print_r($usuario_data);
+        echo "<pre>";
         $session = \Config\Services::session();
 
         if($session->getFlashdata('success'))
@@ -50,9 +52,9 @@
                         </tr>
                         <?php
 
-                      if($users)
+                      /*if($usuario_data)
                         {
-                            foreach($users as $user)
+                            foreach($usuario_data as $user)
                             {
                                 echo '
                                 <tr>
@@ -65,7 +67,7 @@
                                     <td><button type="button" onclick="eliminar_usuario('.$user["id_usuario"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
                                 </tr>';
                             }
-                        }
+                        }*/
 
                         ?>
                     </table>
@@ -75,7 +77,7 @@
 
                     if($pagination_link)
                     {
-                        $pagination_link->setPath('torneos');
+                        $pagination_link->setPath('usuarios');
 
                         echo $pagination_link->links();
                     }
