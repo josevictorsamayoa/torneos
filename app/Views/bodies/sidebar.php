@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="pagos.php">
+                    <a href="<?php echo base_url("/posiciones/index")?>">
                         <span class="icon"><i class="fas fa-database"></i></span>
                         <span class="item">Posiciones</span>
                     </a>
