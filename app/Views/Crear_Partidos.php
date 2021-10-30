@@ -14,15 +14,6 @@
         
         <h2 class="text-center mt-4 mb-4">Agregar Partidos</h2>
 
-        <?php
-
-        echo "<pre>";
-        print_r($calendario_data);
-        echo "<pre>";
-
-        $validation = \Config\Services::validation();
-
-        ?>
         <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -50,10 +41,10 @@
                             <label>Fechas</label>
                             <select typer="text" name="id_calendario" class="form-control">
                                 <option value="">Seleccione un opción</option>
-                                <?php/*
+                                <?php
                                     foreach ($calendario_data as $calendario) {
-                                        echo '<option value="'.$calendario['id_calendario'].'">Del '.$calendario['fecha_inicio'].' al '.$calendario['fecha_fin'].'</option>';
-                                    }*/
+                                        echo '<option value="'.$calendario['id_calendario'].'">Del '.$calendario['fecha_inico'].' al '.$calendario['fecha_fin'].'</option>';
+                                    }
                                 ?>
                                 
                             </select>

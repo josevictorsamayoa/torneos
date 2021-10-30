@@ -39,14 +39,14 @@
                     <div class="form-group">
                         <label>Fechas</label>
                         <select name="id_calendario" class="form-control">
-                            <?php/*
+                            <?php
                                 foreach ($calendario_data as $calendario) {
                                     if ($partido_data['id_calendario'] == $calendario['id_calendario']) {
-                                        echo '<option value="'.$calendario['id_calendario'].'" selected>Del '.$calendario['fecha_inicio'].' al '.$calendario['fecha_fin'].'</option>';
+                                        echo '<option value="'.$calendario['id_calendario'].'" selected>Del '.$calendario['fecha_inico'].' al '.$calendario['fecha_fin'].'</option>';
                                     } else {
-                                        echo '<option value="'.$calendario['id_calendario'].'">Del '.$calendario['fecha_inicio'].' al '.$calendario['fecha_fin'].'</option>';
+                                        echo '<option value="'.$calendario['id_calendario'].'">Del '.$calendario['fecha_inico'].' al '.$calendario['fecha_fin'].'</option>';
                                     }
-                                }*/
+                                }
                             ?>
                             
                         </select>
