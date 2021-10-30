@@ -109,27 +109,22 @@
                         </select>
                     </div>
 
-                    <!--<div class="form-group">
-                        <label>Equipo</label>
-                        <select name="equipo" class="form-control">
-                            <option value="">Seleccione un Equipo</option>
-                            <option value="Male" <?php /*if($user_data['equipo'] == 'Male') echo 'selected';*/ ?>>1</option>
-                            <option value="Female" <?php/* if($user_data['equipo'] == 'Female') echo 'selected';*/ ?>>2</option>
-                        </select>
+                    <div class="form-group">
+                        <label>CUI</label>
+                        <input type="number" name="cui" class="form-control" value="<?php echo $jugador_data['cui'];?>">
 
-                        <?php /*
-                        if($validation->getError('equipo'))
+                        <?php 
+                        if($validation->getError('cui'))
                         {
                             echo "
                             <div class='alert alert-danger mt-2'>
-                            ".$validation->getError('equipo')."
+                            ".$validation->getError('cui')."
                             </div>
                             ";
-                        }*/
+                        }
                         ?>
-                    </div>-->
-
-
+                    </div>
+                   
                     <div class="form-group">
                         <label>No. Camisola</label>
                         <input type="number" name="numero" class="form-control" value="<?php echo $jugador_data['numero'];?>">

@@ -6,15 +6,14 @@
      content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/login.css">
-    <link rel="stylesheet" href="../css/main.css">
-    <title>Juagadores</title>
+    <title>Usuarios</title>
     <!--  -->
 </head>
 <body>
 
     <div class="container">
         
-        <h2 class="text-center mt-4 mb-4">Jugadores</h2>
+        <h2 class="text-center mt-4 mb-4">Usuarios</h2>
 
         <?php
 
@@ -31,10 +30,9 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col">Listado de Jugadores</div>
+                    <div class="col">Listado de Usuarios</div>
                     <div class="col text-right">
                         <a href="<?php echo base_url("/torneos/agregar_jugadores")?>" class="btn btn-success btn-sm">Crear</a>
-                        <a href="<?php echo base_url("/equipos/equipo")?>" class="btn btn-dark btn-sm">Regresar</a>
                     </div>
                 </div>
             </div>
@@ -43,30 +41,28 @@
                     <table class="table table-striped table-bordered">
                         <tr>
                             <th>ID</th>
-                            <th>Nombres</th>
-                            <th>Apellidos</th>
-                            <th>Fecha de Nac.</th>
-                            <th>CUI</th>
-                            <th>No. Camisola</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Rol</th>
+                            <th>Correo</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
                         <?php
 
-                      if($jugador_data)
+                      if($users)
                         {
-                            foreach($jugador_data as $jugador)
+                            foreach($users as $user)
                             {
                                 echo '
                                 <tr>
-                                    <td>'.$jugador["id_jugador"].'</td>
-                                    <td>'.$jugador["nombre"].'</td>
-                                    <td>'.$jugador["apellido"].'</td>
-                                    <td>'.$jugador["fecha_nac"].'</td>
-                                    <td>'.$jugador["cui"].'</td>
-                                    <td>'.$jugador["numero"].'</td>
-                                    <td><a href="'.base_url().'/torneos/editar_jugadores/'.$jugador["id_jugador"].'" class="btn btn-sm btn-warning">Editar</a></td>
-                                    <td><button type="button" onclick="eliminar_jugador('.$jugador["id_jugador"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    <td>'.$user["id_usuario"].'</td>
+                                    <td>'.$user["nombre"].'</td>
+                                    <td>'.$user["apellido"].'</td>
+                                    <td>'.$user["rol"].'</td>
+                                    <td>'.$user["correo"].'</td>
+                                    <td><a href="'.base_url().'/usuarios/editar_usuarios/'.$user["id_usuario"].'" class="btn btn-sm btn-warning">Editar</a></td>
+                                    <td><button type="button" onclick="eliminar_usuario('.$user["id_usuario"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
                                 </tr>';
                             }
                         }
@@ -95,14 +91,6 @@
 </body>
 </html>
 <style>
-
- body {
-	margin: 0;
-	background-attachment: fixed;
-	background-position: center center;
-	background-image: url(../../img/estadio.jpg);
-	background-repeat: no repeat;
-} 
 .pagination li a
 {
     position: relative;
@@ -126,9 +114,9 @@
 <script>
 function eliminar_jugador (id)
 {
-    if(confirm("¿Esta seguro de eliminar el jugador?"))
+    if(confirm("¿Esta seguro de eliminar el usuario?"))
     {
-        window.location.href="<?php echo base_url(); ?>/torneos/eliminar_jugador/"+id;
+        window.location.href="<?php echo base_url(); ?>/usuarios/eliminar_usuario/"+id;
     }
     return false;
 }

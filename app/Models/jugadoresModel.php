@@ -10,7 +10,7 @@ class jugadoresModel extends Model
 
 	protected $primaryKey = 'id_jugador';
 
-	protected $allowedFields = ['id_equipo', 'nombre', 'apellido', 'acta_nacimiento', 'fecha_nac', 'numero'];
+	protected $allowedFields = ['id_equipo', 'nombre', 'apellido', 'acta_nacimiento', 'fecha_nac', 'cui','numero'];
 
 }
 

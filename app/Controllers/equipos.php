@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\jugadoresModel;
 use App\Models\equiposModel;
 use App\Models\UserModel;
 
@@ -13,6 +12,7 @@ class equipos extends BaseController
 		return view('Equipos_View');
 	}
 
+
 	function main(){
 
 		return view('main.php');
@@ -20,12 +20,10 @@ class equipos extends BaseController
 
    	//Funcion para llenado de tabla con los datos de los equipos
     function equipo(){
+		$db = \Config\Database::connect();
         $equiposModel = new equiposModel();
-        
-        $data['equipo_data'] = $equiposModel->orderBy('id_equipo', 'DESC')->paginate(10);
-
-        //print_r($data['equipo_data']) ;
-
+		$query = $db->query("SELECT e.id_equipo, e.nombre, e.id_usuario, e.puntos, e.goles_favor, e.goles_contra, CONCAT(u.nombre, ' ', u.apellido) as 'entrenador' FROM equipo e INNER JOIN usuario u ON e.id_usuario = u.id_usuario");
+		$data['equipo_data'] = $query->getResult();
         $data['pagination_link'] = $equiposModel->pager;
 
         return view('Equipos_View', $data);
@@ -78,15 +76,15 @@ class equipos extends BaseController
     }
 
 	//Funcion para editar equipos
-	 function editar_equipos ($id_jugador = null)
+	 function editar_equipos ($id_equipo = null)
 	 {
-		 $jugadoresModel = new jugadoresModel();
-		 $data['jugador_data'] = $jugadoresModel->where('id_jugador', $id_jugador)->first();
-		
 		 $equiposModel = new equiposModel();
-         $data['equipos_data'] = $equiposModel->findAll();
+		 $data['equipo_data'] = $equiposModel->where('id_equipo', $id_equipo)->first();
+		
+		 $UserModel = new UserModel();
+         $data['usuario_data'] = $UserModel->findAll();
 
-		 return view('Editar_Jugador', $data);
+		 return view('Editar_Equipo', $data);
 	 }
  
 	 function edit_validation_equipo()
@@ -95,42 +93,42 @@ class equipos extends BaseController
 		 
 		 $error = $this->validate([
 			'nombre' 	=> 'required|min_length[3]',
-			'apellidos' => 'required|min_length[3]',
-			'acta_nacimiento' 	=> 'required|min_length[3]',
-            'fecha_nac' 	=> 'required|valid_date',
-            'id_equipo'	=> 'required',
-			'numero'	=> 'required'
+			'id_usuario' => 'required',
+			'puntos' 	=> 'required',
+            'goles_favor' 	=> 'required',
+            'goles_contra'	=> 'required'
 		 ]);
  
-		 $jugadoresModel = new jugadoresModel();
+		 $equiposModel = new equiposModel();
  
-		 $id_jugador = $this->request->getVar('id_jugador');
+		 $id_equipo = $this->request->getVar('id_equipo');
 		
-		 if($error)
+		 if(!$error)
 		 {
-			 $data['jugador_data'] = $jugadoresModel->where('id_jugador', $id_jugador)->first();
+			 $data['equipo_data'] = $equiposModel->where('id_equipo', $id_equipo)->first();
 			 $data['error'] = $this->validator;
-			 echo ('Error');
-			 echo view('Editar_Jugador', $data);
+
+			 $UserModel = new UserModel();
+         	 $data['usuario_data'] = $UserModel->findAll();
+			 echo view('Editar_Equipo', $data);
 		 } 
 		 else 
 		 {
 			 $data = [
 				'nombre'   => $this->request->getVar('nombre'),
-                'apellido'  => $this->request->getVar('apellido'),
-				'acta_nacimiento'   => $this->request->getVar('acta_nacimiento'),
-				'fecha_nac'   => $this->request->getVar('fecha_nac'),
-				'id_equipo'   => $this->request->getVar('id_equipo'),
-				'numero'   => $this->request->getVar('numero'),
+                'id_usuario'  => $this->request->getVar('id_usuario'),
+				'puntos'   => $this->request->getVar('puntos'),
+				'goles_favor'   => $this->request->getVar('goles_favor'),
+				'goles_contra'   => $this->request->getVar('goles_contra'),
 			 ];
  
-			 $jugadoresModel->update($id_jugador, $data);
+			 $equiposModel->update($id_equipo, $data);
  
 			 $session = \Config\Services::session();
  
-			 $session->setFlashdata('success', 'Jugador actualizado');
+			 $session->setFlashdata('success', 'Equipo actualizado');
  
-			 return $this->response->redirect(site_url('/torneos/jugadores'));
+			 return $this->response->redirect(site_url('/equipos/equipo'));
 		 }
 	 }
 

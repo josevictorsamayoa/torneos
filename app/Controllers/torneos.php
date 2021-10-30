@@ -28,10 +28,10 @@ class torneos extends BaseController
 		return view('pagos.php');
 	}
 	//Funcion para llenado de tabla con los datos de los jugadores
-    function jugadores(){
+    function jugadores($id_equipo = null){
         $jugadoresModel = new jugadoresModel();
 
-        $data['jugador_data'] = $jugadoresModel->orderBy('id_jugador', 'DESC')->paginate(10);
+        $data['jugador_data'] = $jugadoresModel->where('id_equipo', $id_equipo)->orderBy('id_jugador', 'DESC')->paginate(10);
 
         $data['pagination_link'] = $jugadoresModel->pager;
 
@@ -55,7 +55,8 @@ class torneos extends BaseController
 			'apellidos' => 'required|min_length[3]',
 			'actanac' 	=> 'required|min_length[3]',
             'fecnac' 	=> 'required|valid_date',
-            'equipo'	=> 'required',
+			'cui'		=> 'required',
+            'id_equipo'	=> 'required',
 			'camisola'	=> 'required'
         ]);
 
@@ -74,15 +75,16 @@ class torneos extends BaseController
                 'apellido'  => $this->request->getVar('apellidos'),
 				'acta_nacimiento'   => $this->request->getVar('actanac'),
 				'fecha_nac'   => $this->request->getVar('fecnac'),
-				'id_equipo'   => $this->request->getVar('equipo'),
+				'cui'   => $this->request->getVar('cui'),
+				'id_equipo'   => $this->request->getVar('id_equipo'),
 				'numero'   => $this->request->getVar('camisola'),
             ]);          
             
             $session = \Config\Services::session();
 
-            $session->setFlashdata('success', 'Usuario Agregado');
+            $session->setFlashdata('success', 'Jugador Agregado');
 
-            return $this->response->redirect(site_url('torneos/jugadores'));
+            return $this->response->redirect(site_url('torneos/jugadores/'.$this->request->getVar('id_equipo')));
         }
     }
 
@@ -107,6 +109,7 @@ class torneos extends BaseController
 			'apellidos' => 'required|min_length[3]',
 			'acta_nacimiento' 	=> 'required|min_length[3]',
             'fecha_nac' 	=> 'required|valid_date',
+			'cui'		=> 'required',
             'id_equipo'	=> 'required',
 			'numero'	=> 'required'
 		 ]);
@@ -129,6 +132,7 @@ class torneos extends BaseController
                 'apellido'  => $this->request->getVar('apellido'),
 				'acta_nacimiento'   => $this->request->getVar('acta_nacimiento'),
 				'fecha_nac'   => $this->request->getVar('fecha_nac'),
+				'cui'   => $this->request->getVar('cui'),
 				'id_equipo'   => $this->request->getVar('id_equipo'),
 				'numero'   => $this->request->getVar('numero'),
 			 ];

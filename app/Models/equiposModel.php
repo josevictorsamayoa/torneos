@@ -10,7 +10,7 @@ class equiposModel extends Model
 
 	protected $primaryKey = 'id_equipo';
 
-	protected $allowedFields = ['nombre', 'id_usuario', 'puntos', 'goles_favor', 'goles_contra'];
+	protected $allowedFields = ['nombre', 'id_usuario', 'puntos', 'goles_favor', 'goles_contra','logo'];
 }
 
 ?>
