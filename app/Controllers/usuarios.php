@@ -12,182 +12,119 @@ class usuarios extends BaseController
         $data['users'] = $userModel->orderBy('id_usuario', 'DESC')->paginate(10);
         $data['pagination_link'] = $userModel->pager;
 
-		return view('UserView');
+		return view('UserView', $data);
 	}
 
-    // function test()
-
-	// {
-	// 	return view('hola');
-	// }
-
-	// //Funcion para llenado de tabla con los datos de los jugadores
-    // function jugadores(){
-    //     $jugadoresModel = new jugadoresModel();
-
-    //     $data['jugador_data'] = $jugadoresModel->orderBy('id_jugador', 'DESC')->paginate(10);
-
-    //     $data['pagination_link'] = $jugadoresModel->pager;
-
-    //     return view('Jugadores_View', $data);
-    // }
-
-	// //Funcion que muestra la vista de crear jugadores
-	// function agregar_jugadores(){
-	// 	$equiposModel = new equiposModel();
-    //     $data['equipos_data'] = $equiposModel->findAll();
-	// 	return view('Crear_Jugador', $data);
-    // }
+	//Funcion que muestra la vista de crear jugadores
+	function agregar_usuario(){
+		return view('CreateUserView');
+    }
 
 
-	// //Funcion para agregar nuevos jugadores
-	// function add_validation_jugador(){
-	// 	helper(['form', 'url']);
+	//Funcion para agregar nuevos jugadores
+	function add_validation_user(){
+		helper(['form', 'url']);
         
-    //     $error = $this->validate([
-    //         'nombres' 	=> 'required|min_length[3]',
-	// 		'apellidos' => 'required|min_length[3]',
-	// 		'actanac' 	=> 'required|min_length[3]',
-    //         'fecnac' 	=> 'required|valid_date',
-    //         'equipo'	=> 'required',
-	// 		'camisola'	=> 'required'
-    //     ]);
+        $error = $this->validate([
+            'nombre' 	=> 'required|min_length[3]',
+			'apellido' => 'required|min_length[3]',
+			'rol' 	=> 'required',
+            'correo' 	=> 'required',
+            'password'	=> 'required|min_length[3]'
+        ]);
 
-    //     if(!$error)
-    //     {
-    //     	echo view('Crear_Jugador', [
-    //             'error' => $this->validator
-    //         ]);
-    //     } 
-    //     else 
-    //     {
-    //         $jugadoresModel = new jugadoresModel();
+		if(!$error)
+        {
+        	echo view('CreateUserView', [
+                'error' => $this->validator
+            ]);
+        } 
+        else 
+        {
+            $userModel = new UserModel();
             
-    //         $jugadoresModel->save([
-    //             'nombre'   => $this->request->getVar('nombres'),
-    //             'apellido'  => $this->request->getVar('apellidos'),
-	// 			'acta_nacimiento'   => $this->request->getVar('actanac'),
-	// 			'fecha_nac'   => $this->request->getVar('fecnac'),
-	// 			'id_equipo'   => $this->request->getVar('equipo'),
-	// 			'numero'   => $this->request->getVar('camisola'),
-    //         ]);          
+            $userModel->save([
+                'nombre'   => $this->request->getVar('nombre'),
+                'apellido'  => $this->request->getVar('apellido'),
+				'rol'   => $this->request->getVar('rol'),
+				'correo'   => $this->request->getVar('correo'),
+				'password'   => $this->request->getVar('password')
+            ]);          
             
-    //         $session = \Config\Services::session();
+            $session = \Config\Services::session();
 
-    //         $session->setFlashdata('success', 'Usuario Agregado');
+            $session->setFlashdata('success', 'Usuario Agregado');
 
-    //         return $this->response->redirect(site_url('torneos/jugadores'));
-    //     }
-    // }
+            return $this->response->redirect(site_url('usuarios/index'));
+        }
+    }
 
-	// //Funcion para editar jugadores
-	//  function editar_jugadores ($id_jugador = null)
-	//  {
-	// 	 $jugadoresModel = new jugadoresModel();
-	// 	 $data['jugador_data'] = $jugadoresModel->where('id_jugador', $id_jugador)->first();
-		
-	// 	 $equiposModel = new equiposModel();
-    //      $data['equipos_data'] = $equiposModel->findAll();
+	//Funcion para editar jugadores
+	 function editar_usuario ($id_user = null)
+	 {
+		 $userModel = new UserModel();
+		 $data['user'] = $userModel->where('id_usuario', $id_user)->first();
 
-	// 	 return view('Editar_Jugador', $data);
-	//  }
+		 return view('EditUserView', $data);
+	 }
  
-	//  function edit_validation_jugador()
-	//  {
-	// 	 helper(['form', 'url']);
+	 function edit_validation_user()
+	 {
+		 helper(['form', 'url']);
 		 
-	// 	 $error = $this->validate([
-	// 		'nombre' 	=> 'required|min_length[3]',
-	// 		'apellidos' => 'required|min_length[3]',
-	// 		'acta_nacimiento' 	=> 'required|min_length[3]',
-    //         'fecha_nac' 	=> 'required|valid_date',
-    //         'id_equipo'	=> 'required',
-	// 		'numero'	=> 'required'
-	// 	 ]);
+		 $error = $this->validate([
+            'nombre' 	=> 'required|min_length[3]',
+			'apellido' => 'required|min_length[3]',
+			'rol' 	=> 'required',
+            'correo' 	=> 'required',
+            'password'	=> 'required|min_length[3]'
+        ]);
  
-	// 	 $jugadoresModel = new jugadoresModel();
+		 $userModel = new UserModel();
  
-	// 	 $id_jugador = $this->request->getVar('id_jugador');
+		 $id_user = $this->request->getVar('id_user');
 		
-	// 	 if($error)
-	// 	 {
-	// 		 $data['jugador_data'] = $jugadoresModel->where('id_jugador', $id_jugador)->first();
-	// 		 $data['error'] = $this->validator;
-	// 		 echo ('Error');
-	// 		 echo view('Editar_Jugador', $data);
-	// 	 } 
-	// 	 else 
-	// 	 {
-	// 		 $data = [
-	// 			'nombre'   => $this->request->getVar('nombre'),
-    //             'apellido'  => $this->request->getVar('apellido'),
-	// 			'acta_nacimiento'   => $this->request->getVar('acta_nacimiento'),
-	// 			'fecha_nac'   => $this->request->getVar('fecha_nac'),
-	// 			'id_equipo'   => $this->request->getVar('id_equipo'),
-	// 			'numero'   => $this->request->getVar('numero'),
-	// 		 ];
+		 if(!$error)
+		 {
+			$userModel = new UserModel();
+			$data['user'] = $userModel->where('id_usuario', $id_user)->first();
+   
+			return view('EditUserView', $data);
+		 } 
+		 else 
+		 {
+			 $data = [
+				'nombre'   => $this->request->getVar('nombre'),
+                'apellido'  => $this->request->getVar('apellido'),
+				'acta_nacimiento'   => $this->request->getVar('acta_nacimiento'),
+				'fecha_nac'   => $this->request->getVar('fecha_nac'),
+				'id_equipo'   => $this->request->getVar('id_equipo'),
+				'numero'   => $this->request->getVar('numero'),
+			 ];
  
-	// 		 $jugadoresModel->update($id_jugador, $data);
+			 $userModel->update($id_user, $data);
  
-	// 		 $session = \Config\Services::session();
+			 $session = \Config\Services::session();
  
-	// 		 $session->setFlashdata('success', 'Jugador actualizado');
+			 $session->setFlashdata('success', 'Jugador actualizado');
  
-	// 		 return $this->response->redirect(site_url('/torneos/jugadores'));
-	// 	 }
-	//  }
+			 return $this->response->redirect(site_url('/torneos/jugadores'));
+		 }
+	 }
 
-	//  //Funcion para eliminar jugadores
-	//  function eliminar_jugador ($id)
-    // {
-    //     $jugadoresModel = new jugadoresModel();
+	 //Funcion para eliminar jugadores
+	 function eliminar_usuario ($id)
+    {
+        $userModel = new UserModel();
 
-    //     $jugadoresModel->where('id_jugador', $id)->delete($id);
+        $userModel->where('id_usuario', $id)->delete($id);
 
-    //     $session = \Config\Services::session();
+        $session = \Config\Services::session();
 
-    //     $session->setFlashdata('success', 'Jugador eliminado');
+        $session->setFlashdata('success', 'Jugador eliminado');
 
-    //     return $this->response->redirect(site_url('/torneos/jugadores'));
-    // }
-
-    // public function login() {
-
-	// 	$correo = $this->request->getPost('correo');
-	// 	$password = $this->request->getPost('password');
-	// 	$Usuario = new UserModel();
-
-	// 	$datosUsuario = $Usuario->obtenerUsuario(['correo' => $correo]);
-
-	// 	if (count($datosUsuario) > 0 && 
-	// 		password_verify($password, $datosUsuario[0]['password'])) {
-
-	// 		$data = [
-	// 					"correo" => $datosUsuario[0]['correo'],
-	// 					"rol" => $datosUsuario[0]['rol'],
-    //                     "nombre" => $datosUsuario[0]['nombre'],
-    //                     "apellido" => $datosUsuario[0]['apellido'],
-    //                     "id_usuario" => $datosUsuario[0]['id_usuario']
-
-	// 				];
-
-	// 		$session = session();
-	// 		$session->set($data);
-
-	// 		return redirect()->to(base_url('Login/test'))->with('mensaje','1');
-
-	// 	} else {
-	// 		return redirect()->to(base_url('Login'))->with('mensaje','0');
-	// 	}
-
-
-	// }
-
-	// public function salir() {
-	// 	$session = session();
-	// 	$session->destroy();
-	// 	return redirect()->to(base_url('Login'));
-	// }
+        return $this->response->redirect(site_url('/usuarios/index'));
+    }
 }
 
 ?>

@@ -6,16 +6,28 @@
      content="width=device-width, initial-scale=1, user-scalable=yes">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/login.css">
-    <title>Usuarios</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="main.php">
+    <title>Calendario</title>
     <!--  -->
 </head>
+
+
+
 <body>
+<!-- Sidebar-->
+<?php 
+    include_once '../app/Views/bodies/sidebar.php';
+?>
 
-    <div class="container">
+<!-- end -->
+
+    <div class="container col-8">
         
-        <h2 class="text-center mt-4 mb-4">Usuarios</h2>
-
+        <h2 class="text-center mt-4 mb-4">Calendario</h2>
+  
         <?php
+
 
         $session = \Config\Services::session();
 
@@ -27,12 +39,13 @@
         }
 
         ?>
+        
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col">Listado de Usuarios</div>
+                    <div class="col">Listado de Calendario</div>
                     <div class="col text-right">
-                        <a href="<?php echo base_url("/usuarios/agregar_usuario")?>" class="btn btn-success btn-sm">Crear</a>
+                        <a href="<?php echo base_url("/calendarios/agregar_calendario")?>" class="btn btn-success btn-sm">Crear</a>
                     </div>
                 </div>
             </div>
@@ -41,28 +54,24 @@
                     <table class="table table-striped table-bordered">
                         <tr>
                             <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Rol</th>
-                            <th>Correo</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Fin</th>
                             <th>Editar</th>
                             <th>Eliminar</th>
                         </tr>
                         <?php
-
-                      if($users)
+                       // echo $calendario_data;
+                     if($calendario_data)
                         {
-                            foreach($users as $user)
+                            foreach($calendario_data as $calendario)
                             {
                                 echo '
                                 <tr>
-                                    <td>'.$user["id_usuario"].'</td>
-                                    <td>'.$user["nombre"].'</td>
-                                    <td>'.$user["apellido"].'</td>
-                                    <td>'.$user["rol"].'</td>
-                                    <td>'.$user["correo"].'</td>
-                                    <td><a href="'.base_url().'/usuarios/editar_usuario/'.$user["id_usuario"].'" class="btn btn-sm btn-warning">Editar</a></td>
-                                    <td><button type="button" onclick="eliminar_usuario('.$user["id_usuario"].')" class="btn btn-danger btn-sm">Eliminar</button></td>
+                                    <td>'.$calendario['id_calendario'].'</td>
+                                    <td>'.$calendario['fecha_inico'].'</td>
+                                    <td>'.$calendario['fecha_fin'].'</td>
+                                    <td><a href="'.base_url().'/calendarios/editar_calendario/'.$calendario['id_calendario'].'" class="btn btn-sm btn-warning">Editar</a></td>
+                                    <td><button type="button" onclick="eliminar_calendario('.$calendario['id_calendario'].')" class="btn btn-danger btn-sm">Eliminar</button></td>
                                 </tr>';
                             }
                         }
@@ -75,7 +84,7 @@
 
                     if($pagination_link)
                     {
-                        $pagination_link->setPath('torneos');
+                        $pagination_link->setPath('calendarios');
 
                         echo $pagination_link->links();
                     }
@@ -90,33 +99,13 @@
  
 </body>
 </html>
-<style>
-.pagination li a
-{
-    position: relative;
-    display: block;
-    padding: .5rem .75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: #007bff;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-}
-
-.pagination li.active a {
-    z-index: 1;
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-}
-</style>
 
 <script>
-function eliminar_usuario (id)
+function eliminar_calendario (id)
 {
-    if(confirm("¿Esta seguro de eliminar el usuario?"))
+    if(confirm("¿Esta seguro de eliminar el calendario?"))
     {
-        window.location.href="<?php echo base_url(); ?>/usuarios/eliminar_usuario/"+id;
+        window.location.href="<?php echo base_url(); ?>/calendarios/eliminar_calendario/"+id;
     }
     return false;
 }
