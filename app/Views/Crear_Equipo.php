@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/main.css">
-    <title>Agregar Jugadores</title>
+    <title>Agregar Equipos</title>
     <!--  -->
 </head>
 <body>
 
-   <!-- Sidebar-->
+   
+    <div class="container  col-8">
+
+    <!-- Sidebar-->
    <?php 
         include_once '../app/Views/bodies/sidebar.php';
     ?>
-    <div class="container  col-8">
         
-        <h2 class="text-center mt-4 mb-4">Agregar Jugadores</h2>
+        <h2 class="text-center mt-4 mb-4">Agregar Equipos</h2>
 
         <?php        
         $validation = \Config\Services::validation();
@@ -105,11 +107,12 @@
                         }
                         ?>
                     </div>
-                                                          
-                    </div>
+                         
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
+                    </div>
+                    
                 </form>
             </div>
         </div>
